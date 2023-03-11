@@ -112,6 +112,12 @@ def schneeflocke(x, y, r, innen=True):
             xa,ya = x,y
     s += '" />'
     return s
+
+def snowflake_icon_15px():
+    s = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="15px" height="15px" viewBox="-7.5 -7.5 15 15">'
+    s += schneeflocke(0,0,6.95,False)
+    s += '</svg>'
+    return s
     
 def wetterleuchten(gefuellt=False):
     s = wolke_grosz(-31,28,fill="#828487" if gefuellt else "none")
@@ -374,6 +380,8 @@ if options.writesvg:
             file.write(WW_SVG1 % (128,100))
             file.write(val[1])
             file.write(WW_SVG2)
+    with open('snowflake-icon-15px.svg','w') as file:
+        file.write(snowflake_icon_15px())
 
 
 if options.writepy:
