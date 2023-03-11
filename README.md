@@ -57,3 +57,11 @@ exclusion). However, the GPL applies to editing the symbols themselves.
 
 * Pat O'Brien for the [Belchertown skin icons](https://github.com/poblabs/weewx-belchertown)
 * National Oceanic and Atmospheric Administration for creating the WMO symbol files and releasing them to the public domain
+
+## Links
+
+* [Wetterzustand / present weather](https://www.woellsdorf-wetter.de/info/presentweather.html)
+* [Belchertown skin for WeeWX](https://github.com/poblabs/weewx-belchertown)
+* [Wettervorhersage / weather forecast](https://github.com/roe-dl/weewx-DWD)
+* [WeeWX](https://weewx.com)
+* [Open-Meteo](https://open-meteo.com)
