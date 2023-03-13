@@ -20,9 +20,13 @@ Nebel / fog | Schneeflocke / snowflake | keine Daten / no data | Wind / wind
 ------------|--------------------------|-----------------------|--------------
 ![fog](weathericons/fog.svg) | ![snowflake](weathericons/snowflake.svg) ![snowflake](weathericons/snowflake2.svg) | ![no data](weathericons/unknown.svg) | ![wind](weathericons/wind.svg)
 
-Niesel / drizzle | Regen / rain | Schneeregen / sleet | Hagel / hail | Schneefall / snow
------------------|--------------|---------------------|--------------|-------------------
-![drizzle](weathericons/drizzle.svg) | ![rain](weathericons/rain.svg) | ![sleet](weathericons/sleet.svg) | ![hail](weathericons/hail.svg) | ![snow](weathericons/snow.svg) ![snow2](weathericons/snow2.svg)
+Niesel / drizzle | Regen / rain | Schneeregen / sleet | Hagel / hail |
+-----------------|--------------|---------------------|--------------|
+![drizzle](weathericons/drizzle.svg) | ![rain](weathericons/rain.svg) | ![sleet](weathericons/sleet.svg) | ![hail](weathericons/hail.svg) | 
+
+gefrierender Regen / freezing rain | Schneefall / snow
+-----------------------------------|------------------
+![freezingrain](weathericons/freezingrain.svg) | ![snow](weathericons/snow.svg) ![snow2](weathericons/snow2.svg)
 
 Wetterleuchten / lightning | Gewitter / thunderstorm | Hagelgewitter / thunderstorm with hail
 ---------------------------|-------------------------|---------------------------------------
