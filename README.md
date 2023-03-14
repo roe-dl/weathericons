@@ -32,9 +32,9 @@ Wetterleuchten / lightning | Gewitter / thunderstorm | Hagelgewitter / thunderst
 ---------------------------|-------------------------|---------------------------------------
 ![lightning](weathericons/lightning.svg) ![lightning](weathericons/lightning2.svg) | ![thunderstorm with rain](weathericons/thunderstorm.svg) | ![thunderstorm with hail](weathericons/thunderstorm-hail.svg)
 
-Regentropfen / raindrop | Schneeflocke / snowflake | keine Daten / no data | Wind / wind
-------------|--------------------------|-----------------------|--------------
-![raindrop](weathericons/raindrop.svg) | ![snowflake](weathericons/snowflake.svg) ![snowflake](weathericons/snowflake2.svg) | ![no data](weathericons/unknown.svg) | ![wind](weathericons/wind.svg)
+Regentropfen / raindrop | Schneeflocke / snowflake | keine Daten / no data 
+------------------------|--------------------------|-----------------------
+![raindrop](weathericons/raindrop.svg) | ![snowflake](weathericons/snowflake.svg) ![snowflake](weathericons/snowflake2.svg) | ![no data](weathericons/unknown.svg) 
 
 
 ----------------------------------------------------------------------------
