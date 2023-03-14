@@ -74,3 +74,4 @@ exclusion). However, the GPL applies to editing the symbols themselves.
 * [Wettervorhersage / weather forecast](https://github.com/roe-dl/weewx-DWD)
 * [WeeWX](https://weewx.com)
 * [Open-Meteo](https://open-meteo.com)
+* [Verkehrszeichen Schleudergefahr](https://commons.wikimedia.org/wiki/File:Bild_111_-_Schleudergefahr,_StVO_DDR_1977.svg?uselang=de)

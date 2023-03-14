@@ -294,12 +294,12 @@ def gefrierender_regen4(gefuellt=False,innen=False):
     h = b*0.5
     v = round(b*math.sin(60*math.pi/180),8)
     #s += '<path stroke="none" fill="#F0F0F0" d="M-60,46 l%s,%s l%s,%s z" />' % (h,-v,h,v)
-    s += '<path stroke="#F0F0F0" stroke-width="8" fill="#F0F0F0" d="M10,42 l%s,%s l%s,%s z" />' % (h,-v,h,v)
+    s += '<path stroke="#F0F0F0" stroke-width="8" stroke-linejoin="round" fill="#F0F0F0" d="M10,42 l%s,%s l%s,%s z" />' % (h,-v,h,v)
     b = 42
     h = b*0.5
     v = round(b*math.sin(60*math.pi/180),8)
     #s += '<path stroke="#FF0000" stroke-width="6" stroke-linecap="round" fill="none" d="M-56,42 l%s,%s l%s,%s z" />' % (h,-v,h,v)
-    s += '<path stroke="#FF0000" stroke-width="6" stroke-linecap="round" fill="none" d="M10,42 l%s,%s l%s,%s z" />' % (h,-v,h,v)
+    s += '<path stroke="#b52126" stroke-width="6" stroke-linejoin="round" fill="none" d="M10,42 l%s,%s l%s,%s z" />' % (h,-v,h,v)
     s += '<g transform="scale(0.5)">'
     #s += schlitterlinie(-23*2-25,37*2)
     s += schlitterlinie(23*2+15,37*2)
