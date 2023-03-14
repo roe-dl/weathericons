@@ -143,6 +143,17 @@ def schneeflocke(x, y, r, innen=True):
     s += '" />'
     return s
 
+def regentropfen(x, y, r):
+    """ raindrop """
+    r *= (1+0.15/2)
+    r1 = 5*r
+    r2 = 0.6*r
+    s = '<path stroke="none" fill="%s" d="M%s,%s ' % (RAIN_COLOR,x,y-r)
+    s += 'a%s,%s 0 0 1 %s,%s ' % (r1,r1,-0.508568808*r,1.081632653*r)
+    s += 'a%s,%s 0 1 0 %s,0 ' % (r2,r2,1.017137616*r)
+    s += 'a%s,%s 0 0 1 %s,%s z" />' % (r1,r1,-0.508568808*r,-1.081632653*r)
+    return s
+    
 def schlitterlinie(x, y):
     s = '<path stroke="none" fill="#000000" d="M%s,%s l8.54455967,-4.047423 ' % (x-14.02235138,y)
     # left
@@ -158,6 +169,12 @@ def schlitterlinie(x, y):
 def snowflake_icon_15px():
     s = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="15px" height="15px" viewBox="-7.5 -7.5 15 15">'
     s += schneeflocke(0,0,6.95,False)
+    s += '</svg>'
+    return s
+    
+def raindrop_icon_15px():
+    s = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="15px" height="15px" viewBox="-7.5 -7.5 15 15">'
+    s += regentropfen(0,0,6.95)
     s += '</svg>'
     return s
     
@@ -234,6 +251,7 @@ def glatt(gefuellt=False):
     return s
 
 def gefrierender_regen(gefuellt=False,innen=False):
+    """ freezing rain (slithering line below the cloud) """
     scale = 0.85
     s = wolke(-31*scale,4,scale=scale,offen=4,fill=CLOUD_COLOR if gefuellt else "none")
     s += regen(-27,-7,30*scale)
@@ -242,11 +260,50 @@ def gefrierender_regen(gefuellt=False,innen=False):
     return s
     
 def gefrierender_regen2(gefuellt=False,innen=False):
-    """ rain """
+    """ freezing rain (slithering line within the cloud) """
     s = wolke_grosz(-31,22,offen=4,fill=CLOUD_COLOR if gefuellt else "none")
     s += regen()
     s += schlitterlinie(10.6,5)
     s += schneeflocke(-15,-7,8,innen=innen)
+    return s
+
+'''
+def gefrierender_regen(gefuellt=False,innen=False):
+    """ freezing rain """
+    s = wolke(-31+21,22-14,scale=0.85,offen=4,fill=CLOUD_COLOR if gefuellt else "none")
+    s += regen(-28+17,10-14,30*0.85)
+    b = 74
+    h = b*0.5
+    v = round(b*math.sin(60*math.pi/180),8)
+    s += '<path stroke="none" fill="#F0F0F0" d="M-60,46 l%s,%s l%s,%s z" />' % (h,-v,h,v)
+    b = 68
+    h = b*0.5
+    v = round(b*math.sin(60*math.pi/180),8)
+    s += '<path stroke="#FF0000" stroke-width="6" stroke-linecap="round" fill="none" d="M-56,42 l%s,%s l%s,%s z" />' % (h,-v,h,v)
+    s += schlitterlinie(-23,37)
+    return s
+'''
+
+def gefrierender_regen4(gefuellt=False,innen=False):
+    """ freezing rain (traffic sign like) """
+    #s = wolke(-31+21,22-14,scale=0.85,offen=4,fill=CLOUD_COLOR if gefuellt else "none")
+    #s += regen(-28+17,10-14,30*0.85)
+    s = wolke_grosz(-31-7,22-7,offen=4,fill=CLOUD_COLOR if gefuellt else "none")
+    s += regen(-28-7,10-7,30)
+    b = 42
+    h = b*0.5
+    v = round(b*math.sin(60*math.pi/180),8)
+    #s += '<path stroke="none" fill="#F0F0F0" d="M-60,46 l%s,%s l%s,%s z" />' % (h,-v,h,v)
+    s += '<path stroke="#F0F0F0" stroke-width="8" fill="#F0F0F0" d="M10,42 l%s,%s l%s,%s z" />' % (h,-v,h,v)
+    b = 42
+    h = b*0.5
+    v = round(b*math.sin(60*math.pi/180),8)
+    #s += '<path stroke="#FF0000" stroke-width="6" stroke-linecap="round" fill="none" d="M-56,42 l%s,%s l%s,%s z" />' % (h,-v,h,v)
+    s += '<path stroke="#FF0000" stroke-width="6" stroke-linecap="round" fill="none" d="M10,42 l%s,%s l%s,%s z" />' % (h,-v,h,v)
+    s += '<g transform="scale(0.5)">'
+    #s += schlitterlinie(-23*2-25,37*2)
+    s += schlitterlinie(23*2+15,37*2)
+    s += '</g>'
     return s
 
 def unknown(color=CLOUD_COLOR):
@@ -484,12 +541,14 @@ if options.writesvg:
         ('drizzle',niesel_gesamt(gefuellt)),
         ('snowflake',schneeflocke(0,0,40,False)),
         ('snowflake2',schneeflocke(0,0,40,True)),
+        ('raindrop',regentropfen(0,0,40)),
         ('snow',schneefall(gefuellt=gefuellt,innen=False)),
         ('snow2',schneefall(gefuellt=gefuellt,innen=True)),
         ('sleet',schneeregen(gefuellt=gefuellt,innen=False)),
         ('hail',hagel(gefuellt)),
         ('wind',wind()),
-        ('freezingrain',gefrierender_regen(gefuellt=gefuellt,innen=False))
+        ('freezingrain',gefrierender_regen(gefuellt=gefuellt,innen=False)),
+        ('freezingrain2',gefrierender_regen4(gefuellt=gefuellt,innen=False))
     ]
     for idx,val in enumerate(N_ICON_LIST):
         s = bewoelkt(val[0],val[1],val[2],gefuellt=gefuellt)
@@ -506,6 +565,8 @@ if options.writesvg:
             file.write(WW_SVG2)
     with open('snowflake-icon-15px.svg','w') as file:
         file.write(snowflake_icon_15px())
+    with open('raindrop-icon-15px.svg','w') as file:
+        file.write(raindrop_icon_15px())
 
 
 if options.writepy:
