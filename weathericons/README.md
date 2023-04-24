@@ -17,8 +17,8 @@ Tag /day | ![clear day](clear-day.svg) | ![mostly clear day](mostly-clear-day.sv
 Nacht / night |![clear night](clear-night.svg) | ![mostly clear night](mostly-clear-night.svg) | ![partly cloudy night](partly-cloudy-night.svg) | ![mostly cloudy night](mostly-cloudy-night.svg) | wie Tag / like day
 N | 0/8 | 1/8, 2/8 | 3/8, 4/8, 5/8 | 6/8, 7/8 | 8/8
 
-Nebel / fog | Wind / wind | gefrierender Regen |
-------------|-------------|--------------------|
+Nebel / fog | Wind / wind | gefrierender Regen / freezing rain |
+------------|-------------|------------------------------------|
 ![fog](fog.svg) | ![wind](wind.svg) | ![freezingrain](freezingrain.svg) ![freezingrain](freezingrain2.svg)
 
 Niesel / drizzle | Regen / rain | Schneeregen / sleet | Hagel / hail | Schneefall / snow
