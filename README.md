@@ -6,7 +6,7 @@ WMO 4677 ww | WMO 4680 w<sub>a</sub>w<sub>a</sub>
 
 WMO 2700 N | WMO 4561 W W1 W2
 -----------|--------------
-![Code-Tabelle 2700](WMO-code-table-2700.png) | ![Code-Tabelle 4561](WMO-code-table-4561.png)
+![Code-Tabelle 2700](WMO-code-table-2700.png) | ![Code-Tabelle 4561](WMO-code-table-4561-colored.png)
 
 Icons nach dem Vorbild der Belchertown-Icons aber im SVG-Format / Icons like the Belchertown icons but in SVG format
 
