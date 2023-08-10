@@ -14,7 +14,7 @@ from them.
 
 ## Lizenz und Nutzungsrechte
 
-Das Waldbrandeichhörnchen `wildfiresquirrel.svg` darf **AUSSCHLIEßlICH**
+Das Waldbrandeichhörnchen `wildfiresquirrel.svg` darf **AUSSCHLIEßLICH**
 im Zusammenhang mit Waldbrandschutz und Waldbrandgefahren verwendet
 werden. Mißbräuchliche Nutzung kann durch die Forstverwaltungen der
 deutschen Bundesländer verfolgt werden.
@@ -54,10 +54,10 @@ much has been lost since then, the wildfire squirrel icon has lasted by now.
 
 ## Links
 
-[Sachsenforst](https://www.wald.sachsen.de/waldbrandgefaehrdung-4186.html)
-[Landesforstanstalt Mecklenburg-Vorpommern](https://www.wald-mv.de/waldprojekte/waldbrandschutz/)
-[Landeszentrum Wald Sachsen-Anhalt](https://landeszentrumwald.sachsen-anhalt.de/waldschutz/waldbrandschutz)
-[allgemeine Informationen zum Waldbrandschutz](https://www.woellsdorf-wetter.de/info/wildfire.html)
-[Wikimedia Commons: ISO 7010 P002 Rauchverbot/No smoking](https://commons.wikimedia.org/wiki/File:ISO_7010_P002.svg)
-[Wikimedia Commons: ISO 7010 P003 Kein Feuer/No fire](https://commons.wikimedia.org/wiki/File:ISO_7010_P003.svg)
-[Grüner Pfeil] (https://de.wikipedia.org/wiki/Gr%C3%BCnpfeil)
+* [Sachsenforst](https://www.wald.sachsen.de/waldbrandgefaehrdung-4186.html)
+* [Landesforstanstalt Mecklenburg-Vorpommern](https://www.wald-mv.de/waldprojekte/waldbrandschutz/)
+* [Landeszentrum Wald Sachsen-Anhalt](https://landeszentrumwald.sachsen-anhalt.de/waldschutz/waldbrandschutz)
+* [allgemeine Informationen zum Waldbrandschutz](https://www.woellsdorf-wetter.de/info/wildfire.html)
+* [Wikimedia Commons: ISO 7010 P002 Rauchverbot/No smoking](https://commons.wikimedia.org/wiki/File:ISO_7010_P002.svg)
+* [Wikimedia Commons: ISO 7010 P003 Kein Feuer/No fire](https://commons.wikimedia.org/wiki/File:ISO_7010_P003.svg)
+* [Grüner Pfeil] (https://de.wikipedia.org/wiki/Gr%C3%BCnpfeil)
