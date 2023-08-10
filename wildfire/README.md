@@ -14,6 +14,11 @@ from them.
 
 ## Lizenz und Nutzungsrechte
 
+Das Waldbrandeichhörnchen `wildfiresquirrel.svg` darf **AUSSCHLIEßlICH**
+im Zusammenhang mit Waldbrandschutz und Waldbrandgefahren verwendet
+werden. Mißbräuchliche Nutzung kann durch die Forstverwaltungen der
+deutschen Bundesländer verfolgt werden.
+
 Die Symbole können im nichtkommerziellen Bereich frei verwendet werden.
 Die Werke müssen auch nicht unter die GPL gestellt werden (Fonts
 Exclusion). Bearbeitungen der Symbole selbst unterliegen dagegen
@@ -21,7 +26,12 @@ der GPL.
 
 ## License and Usage
 
-In non-commercial domain the symbols can be freely used. What you create
+The wildfire squirrel `wildfiresquirrel.svg` **MUST NOT** be used for 
+other purposes than wildfire protection information or wildfire danger 
+information. Abuse may be prosecuted by the forest administrations
+of the german federal states.
+
+In non-profit domain the symbols can be freely used. What you create
 using these symbols is not required to be subject to the GPL (fonts
 exclusion). However, the GPL applies to editing the symbols themselves.
 
