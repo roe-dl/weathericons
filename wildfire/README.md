@@ -60,4 +60,4 @@ much has been lost since then, the wildfire squirrel icon has lasted by now.
 * [allgemeine Informationen zum Waldbrandschutz](https://www.woellsdorf-wetter.de/info/wildfire.html)
 * [Wikimedia Commons: ISO 7010 P002 Rauchverbot/No smoking](https://commons.wikimedia.org/wiki/File:ISO_7010_P002.svg)
 * [Wikimedia Commons: ISO 7010 P003 Kein Feuer/No fire](https://commons.wikimedia.org/wiki/File:ISO_7010_P003.svg)
-* [Grüner Pfeil] (https://de.wikipedia.org/wiki/Gr%C3%BCnpfeil)
+* [Grüner Pfeil](https://de.wikipedia.org/wiki/Gr%C3%BCnpfeil)
