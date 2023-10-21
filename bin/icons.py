@@ -425,7 +425,84 @@ def tornado():
     """ tornado, funnel clouds """
     # TODO
     return ""
-  
+
+epfeil_coordinates = (
+    (-0.1682952122,0.5728820612),
+    (0.2461538364,-0.1269230985),
+    (-0.0526681452,0.3855718688),
+    (-0.050322184,-0.0734997543),
+    (0.0387837266,0.2417740425),
+    (0.1411296744,-0.2038461369),
+    (-0.0714760171,0.0444421877),
+    (0.1483991222,-0.5463653028),
+    (-0.2653846543,0.1461538497),
+    (0.1942307946,-0.4403845977),
+    (-0.1605509414,0.0001949137),
+)
+
+def epfeil(x=0, y=0, factor=1, color='currentColor'):
+    s = '<path stroke="none" fill="%s" d="' % color
+    s += 'M%s,%s ' % (round(x-0.013652021551523648*factor,10),round(y-factor,10))
+    for i in epfeil_coordinates:
+        s += 'l%s,%s ' % (round(i[0]*factor,10),round(i[1]*factor,10))
+    s += 'Z" />'
+    return s
+
+def pvicon(gefuellt=False):
+    # sun circle
+    cx = -32
+    cy = -18
+    r = 14
+    # sun beams
+    ri = 19
+    ro = 30
+    # pv
+    pv = ((30,-20),(60,-10),(0,20),(35,45))
+    # sun
+    s = '<g stroke="%s">' % SUN_COLOR
+    s += '<circle cx="%s" cy="%s" r="%s" fill="%s" />' % (cx,cy,r,SUN_COLOR if gefuellt else 'none')
+    strahlen = []
+    for i in range(8):
+        w = math.pi*i/4
+        strahlen.append('M%s,%s L%s,%s ' % (round(math.cos(w)*ri,14)+cx,round(math.sin(w)*ri,14)+cy,round(math.cos(w)*ro,14)+cx,round(math.sin(w)*ro,14)+cy))
+    s += '<path fill="none" d="%s" />' % ' '.join(strahlen)
+    s += '</g>'
+    s += '<g stroke="%s">' % '#000'
+    s += '<path fill="%s" d="' % '#4c7ed3'
+    s += 'M%s,%s ' % pv[0]
+    s += 'L%s,%s ' % pv[1]
+    s += 'L%s,%s ' % pv[3]
+    s += 'L%s,%s ' % pv[2]
+    s += 'Z" />'
+    s += '<path fill="none" d="'
+    dx0 = (pv[2][0]-pv[0][0])/3
+    dy0 = (pv[2][1]-pv[0][1])/3
+    dx1 = (pv[3][0]-pv[1][0])/3
+    dy1 = (pv[3][1]-pv[1][1])/3
+    x0,y0 = pv[0]
+    x1,y1 = pv[1]
+    for i in range(2):
+        x0 += dx0
+        y0 += dy0
+        x1 += dx1
+        y1 += dy1
+        s += 'M%s,%s L%s,%s ' % (x0,y0,x1,y1)
+    dx0 = (pv[1][0]-pv[0][0])/3
+    dy0 = (pv[1][1]-pv[0][1])/3
+    dx1 = (pv[3][0]-pv[2][0])/3
+    dy1 = (pv[3][1]-pv[2][1])/3
+    x0,y0 = pv[0]
+    x1,y1 = pv[2]
+    for i in range(2):
+        x0 += dx0
+        y0 += dy0
+        x1 += dx1
+        y1 += dy1
+        s += 'M%s,%s L%s,%s ' % (x0,y0,x1,y1)
+    s += '" />'
+    s += '</g>'
+    s += epfeil(13,-10,35,'#d9040f')
+    return s
 
 # icons of cloudiness
 N_ICON_LIST = [
@@ -520,6 +597,9 @@ if True:
     parser.add_option("--write-py", dest="writepy", action="store_true",
                       default=False,
                       help="write Python script")
+    parser.add_option("--write-pv-svg", dest="writepvsvg", action="store_true",
+                      default=False,
+                      help="write PV SVG files")
     parser.add_option("--filled", action="store_true",
                       default=False,
                       help="filled icons")
@@ -634,3 +714,14 @@ if options.writepy:
     s += '    except (ArithmeticError,LookupError,TypeError,ValuError):\n'
     s += '        return ""\n\n'
     print(s)
+
+if options.writepvsvg:
+
+    if True:
+        val = ('photovoltaics',pvicon(options.filled))
+        with open(val[0]+'.svg','w') as file:
+            file.write(WW_XML)
+            file.write(WW_SVG1 % (128,100))
+            file.write(val[1])
+            file.write(WW_SVG2)
+

@@ -36,6 +36,9 @@ Regentropfen / raindrop | Schneeflocke / snowflake | keine Daten / no data
 ------------------------|--------------------------|-----------------------
 ![raindrop](weathericons/raindrop.svg) | ![snowflake](weathericons/snowflake.svg) ![snowflake](weathericons/snowflake2.svg) | ![no data](weathericons/unknown.svg) 
 
+Photovoltaik / photovoltaics |
+-----------------------------|
+![photovoltaics](photovoltaics/photovoltaics.svg)
 
 ----------------------------------------------------------------------------
 
