@@ -448,7 +448,7 @@ def epfeil(x=0, y=0, factor=1, color='currentColor'):
     s += 'Z" />'
     return s
 
-def pvicon(gefuellt=False):
+def pvicon(gefuellt=False, color='currentColor'):
     # sun circle
     cx = -32
     cy = -18
@@ -467,7 +467,7 @@ def pvicon(gefuellt=False):
         strahlen.append('M%s,%s L%s,%s ' % (round(math.cos(w)*ri,14)+cx,round(math.sin(w)*ri,14)+cy,round(math.cos(w)*ro,14)+cx,round(math.sin(w)*ro,14)+cy))
     s += '<path fill="none" d="%s" />' % ' '.join(strahlen)
     s += '</g>'
-    s += '<g stroke="%s">' % '#000'
+    s += '<g stroke="%s">' % color
     s += '<path fill="%s" d="' % '#4c7ed3'
     s += 'M%s,%s ' % pv[0]
     s += 'L%s,%s ' % pv[1]
