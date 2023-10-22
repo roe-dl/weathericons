@@ -12,7 +12,7 @@ from them.
 
 Photovoltaik/photovoltaics | Solarpanel/pv panel | Batterie/accumulator
 ---------------------------|---------------------|---------------------
-![photovoltaics](photovoltaics.svg) | ![pv panel](solarpanel.svg) | ![accu](accumulator.svg)
+![photovoltaics](photovoltaics.svg) | ![pv panel](pvpanel.svg) | ![accu](accumulator.svg)
 
 ## Dunkler Hintergrund / Dark mode
 
