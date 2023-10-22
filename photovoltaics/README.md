@@ -10,7 +10,9 @@ Because of the Scalable Vector Format (SVG) of these files, they can
 easily be scaled and edited, and also, additional icons can be derived 
 from them.
 
-![photovoltaics](photovoltaics.svg)
+Photovoltaik/photovoltaics | Solarpanel/pv panel | Batterie/accumulator
+---------------------------|---------------------|---------------------
+![photovoltaics](photovoltaics.svg) | ![pv panel](solarpanel.svg) | ![accu](accumulator.svg)
 
 ## Dunkler Hintergrund / Dark mode
 

@@ -448,27 +448,9 @@ def epfeil(x=0, y=0, factor=1, color='currentColor'):
     s += 'Z" />'
     return s
 
-def pvicon(gefuellt=False, color='currentColor'):
-    # sun circle
-    cx = -32
-    cy = -18
-    r = 14
-    # sun beams
-    ri = 19
-    ro = 30
-    # pv
-    pv = ((30,-20),(60,-10),(0,20),(35,45))
-    # sun
-    s = '<g stroke="%s">' % SUN_COLOR
-    s += '<circle cx="%s" cy="%s" r="%s" fill="%s" />' % (cx,cy,r,SUN_COLOR if gefuellt else 'none')
-    strahlen = []
-    for i in range(8):
-        w = math.pi*i/4
-        strahlen.append('M%s,%s L%s,%s ' % (round(math.cos(w)*ri,14)+cx,round(math.sin(w)*ri,14)+cy,round(math.cos(w)*ro,14)+cx,round(math.sin(w)*ro,14)+cy))
-    s += '<path fill="none" d="%s" />' % ' '.join(strahlen)
-    s += '</g>'
-    s += '<g stroke="%s">' % color
-    s += '<path fill="%s" d="' % '#4c7ed3'
+def solarpanel(pv, color1='currentColor', color2='#4c7ed3'):
+    s = '<g stroke="%s">' % color1
+    s += '<path fill="%s" d="' % color2
     s += 'M%s,%s ' % pv[0]
     s += 'L%s,%s ' % pv[1]
     s += 'L%s,%s ' % pv[3]
@@ -501,7 +483,40 @@ def pvicon(gefuellt=False, color='currentColor'):
         s += 'M%s,%s L%s,%s ' % (x0,y0,x1,y1)
     s += '" />'
     s += '</g>'
+    return s
+
+def pvicon(gefuellt=False, color='currentColor'):
+    # sun circle
+    cx = -32
+    cy = -18
+    r = 14
+    # sun beams
+    ri = 19
+    ro = 30
+    # pv
+    pv = ((30,-20),(60,-10),(0,20),(35,45))
+    # sun
+    s = '<g stroke="%s">' % SUN_COLOR
+    s += '<circle cx="%s" cy="%s" r="%s" fill="%s" />' % (cx,cy,r,SUN_COLOR if gefuellt else 'none')
+    strahlen = []
+    for i in range(8):
+        w = math.pi*i/4
+        strahlen.append('M%s,%s L%s,%s ' % (round(math.cos(w)*ri,14)+cx,round(math.sin(w)*ri,14)+cy,round(math.cos(w)*ro,14)+cx,round(math.sin(w)*ro,14)+cy))
+    s += '<path fill="none" d="%s" />' % ' '.join(strahlen)
+    s += '</g>'
+    s += solarpanel(pv,color,'#4c7ed3')
     s += epfeil(13,-10,35,'#d9040f')
+    return s
+
+def accumulator(filled=100, color1='currentColor', color2="none"):
+    s = ''
+    if filled<100:
+        s += '<path stroke="none" fill="%s" d="M-55,-25 h%s v50 h%s z" />' % (color2,filled,-filled)
+    s += '<path stroke="%s" fill="%s" fill-opacity="0.8" d="' % (color1,color2 if filled>=100 else 'none')
+    s += 'M-55,-25 h100 v50 h-100 z'
+    s += 'M45,-10 h5 a5,5 0 0 1 5,5 v10 a5,5 0 0 1 -5,5 h-5 z'
+    s += '" />'
+    s += '<path stroke="%s" fill="none" d="M15,0 h20 m-10,-10 v20 M-45,0 h20" />' % color1
     return s
 
 # icons of cloudiness
@@ -717,8 +732,12 @@ if options.writepy:
 
 if options.writepvsvg:
 
-    if True:
-        val = ('photovoltaics',pvicon(options.filled))
+    pv_list = (
+        ('photovoltaics',pvicon(options.filled)),
+        ('pvpanel',solarpanel(((10,-45),(58,-30),(-58,5),(10,45)))),
+        ('accumulator',accumulator(100,'currentColor','#d2ee00'))
+    )
+    for val in pv_list:
         with open(val[0]+'.svg','w') as file:
             file.write(WW_XML)
             file.write(WW_SVG1 % (128,100))
