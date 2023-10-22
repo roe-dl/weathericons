@@ -1,5 +1,15 @@
 # Photovoltaik / Photovoltaics
 
+## Inhalt dieses Verzeichnisses / Contents of this directory
+
+Das SVG-Format der Dateien ermöglicht eine problemlose Skalierung 
+(Vergrößerung, Verkleinerung) und Anpassung sowie Erweiterung um 
+zusätzliche Icons.
+
+Because of the Scalable Vector Format (SVG) of these files, they can 
+easily be scaled and edited, and also, additional icons can be derived 
+from them.
+
 ![photovoltaics](photovoltaics.svg)
 
 ## Dunkler Hintergrund / Dark mode
