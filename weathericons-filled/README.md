@@ -16,6 +16,8 @@ from them.
 Tag /day | ![clear day](clear-day.svg) | ![mostly clear day](mostly-clear-day.svg) | ![partly cloudy day](partly-cloudy-day.svg) | ![mostly cloudy day](mostly-cloudy-day.svg) | ![cloudy](cloudy.svg)
 Nacht / night |![clear night](clear-night.svg) | ![mostly clear night](mostly-clear-night.svg) | ![partly cloudy night](partly-cloudy-night.svg) | ![mostly cloudy night](mostly-cloudy-night.svg) | wie Tag / like day
 N | 0/8 | 1/8, 2/8 | 3/8, 4/8, 5/8 | 6/8, 7/8 | 8/8
+Tag-Wind /day-wind | ![clear day](clear-day-wind.svg) | ![mostly clear day](mostly-clear-day-wind.svg) | ![partly cloudy day](partly-cloudy-day-wind.svg) | ![mostly cloudy day](mostly-cloudy-day-wind.svg) | ![cloudy](cloudy-wind.svg)
+Nacht-Wind / night-wind |![clear night](clear-night-wind.svg) | ![mostly clear night](mostly-clear-night-wind.svg) | ![partly cloudy night](partly-cloudy-night-wind.svg) | ![mostly cloudy night](mostly-cloudy-night-wind.svg) | wie Tag / like day
 
 Nebel / fog | Schneeflocke / snowflake | keine Daten / no data | Wind / wind
 ------------|--------------------------|-----------------------|------------

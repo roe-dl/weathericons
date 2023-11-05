@@ -27,16 +27,16 @@ MOON_COLOR  = "#da4935"
 CLOUD_COLOR = "#828487"
 RAIN_COLOR  = "#66a1ba"
 
-def sonne(color=SUN_COLOR, fill="none"):
+def sonne(x=0, y=0, color=SUN_COLOR, fill="none"):
     """ sun icon """
     s = '<g stroke="%s">' % color
-    s += '<circle cx="0" cy="0" r="18" fill="%s" />' % fill
+    s += '<circle cx="%s" cy="%s" r="18" fill="%s" />' % (x,y,fill)
     s += '<path d="'
     for i in range(8):
         w = math.pi*i/4
         ri = 24
         ro = 38
-        s += 'M %s,%s L %s,%s ' % (round(math.cos(w)*ri,14),round(math.sin(w)*ri,14),round(math.cos(w)*ro,14),round(math.sin(w)*ro,14))
+        s += 'M %s,%s L %s,%s ' % (round(x+math.cos(w)*ri,14),round(y+math.sin(w)*ri,14),round(x+math.cos(w)*ro,14),round(y+math.sin(w)*ro,14))
     s += '" />'
     s += '</g>'
     return s
@@ -312,7 +312,15 @@ def unknown(color=CLOUD_COLOR):
     s += '<text x="-18" y="18" fill="%s" style="font-family:sans-serif;font-size:50px;font-weight:normal;text-align:center">?</text>' % color
     return s
 
-def bewoelkt(wolke=1,mit_sonne=False,mit_mond=False,gefuellt=False):
+def windsymbol(wx, wy, factor=1,color="#404040"):
+    r = round(12*factor,6)
+    return '<path stroke-width="%s" stroke="%s" fill="none" d="M%s,%s h%s a%s,%s 0 1 0 %s,%s M%s,%s h%s a%s,%s 0 1 0 %s,%s M%s,%s h%s a%s,%s 0 1 1 %s,%s" />' % (
+           round(6*factor,1),color,
+           wx,wy-15*factor,40*factor,r,r,-r,-r,
+           wx,wy,75*factor,r,r,-r,-r,
+           wx,wy+15*factor,57.5*factor,r,r,-r,r)
+
+def bewoelkt(wolke=1,mit_sonne=False,mit_mond=False,mit_wind=0,gefuellt=False):
     """ cloudiness
     
         wolke = 0 --> sun or moon
@@ -322,12 +330,17 @@ def bewoelkt(wolke=1,mit_sonne=False,mit_mond=False,gefuellt=False):
                 4 --> 2 clouds
         mit_sonne = True for day icons
         mit_mond = True for night icons
+        mit_wind = including squalls symbol
     """
     if wolke==0:
         # clear day or night
         if mit_sonne:
+            if mit_wind:
+                return sonne(-21,-6,fill=SUN_COLOR if gefuellt else "none")+windsymbol(13,24,0.5)
             return sonne(fill=SUN_COLOR if gefuellt else "none")
         if mit_mond:
+            if mit_wind:
+                return mond(-23,-35,fill=MOON_COLOR if gefuellt else "none")+windsymbol(3,15,0.5)
             return mond(fill=MOON_COLOR if gefuellt else "none")
     s = ""
     xy = (-31,28)
@@ -356,13 +369,13 @@ def bewoelkt(wolke=1,mit_sonne=False,mit_mond=False,gefuellt=False):
             strahlen = (3,4,5,6,7)
             xy = (-25,28)
         else:
-            cx = 0
-            cy = -7
+            cx = -21 if mit_wind else 0
+            cy = 0 if mit_wind else -7
             r = 18
             ri = 24
             ro = 38
             #arc = (17.39,-2.45,1,-5.29,10.24)
-            arc = (17.40699560,-2.41780574,1,-5.26007294,10.21428571)
+            arc = (17.40699560+cx,-2.41780574+cy+7,1,-5.26007294+cx,10.21428571+cy+7)
             strahlen = (3,4,5,6,7,0)
         s += '<g stroke="%s">' % SUN_COLOR
         if not arc or gefuellt:
@@ -400,12 +413,18 @@ def bewoelkt(wolke=1,mit_sonne=False,mit_mond=False,gefuellt=False):
     if wolke==1:
         # mostly clear day or night --> small cloud
         #s += '<path stroke="#828487" stroke-width="1.8" fill="none" d="M 0,33 a 12,12 0 1 1 2.92816105,-23.63726226 a 14.4,14.4 0 0 1 25.92035627,-5.69450347 a 9.75,9.75 0 0 1 10.15148268,5.93176573 a 12,12 0 0 1 -3.7469988,23.4 z " />' 
-        s += wolke_klein(0,33,fill="#A2A4A7" if gefuellt else "none")
+        s += wolke_klein(-21 if mit_wind else 0,40 if mit_wind else 33,fill="#A2A4A7" if gefuellt else "none")
+        if mit_wind:
+            # wind symbol
+            s += windsymbol(14,-23,0.5)
     if wolke>=2:
         # large cloud
         ##s += '<path stroke="#828487" fill="none" d="M %s,%s a 20,20 0 0 1 0,-40 h 5 a 24,24 0 0 1 43,-9 h 2 a 16.25,16.25 0 0 1 15,10 a 20,20 0 0 1 -6.244997998398398,39 z " />' % xy
         ##s += '<path stroke="#828487" fill="none" d="M %s,%s a 20,20 0 1 1 4.88026841,-39.3954371 a 24,24 0 0 1 43.20059379,-9.49083912 a 16.25,16.25 0 0 1 16.9191378,9.88627622 a 20,20 0 0 1 -6.244998,39 z " />' % xy
-        s += wolke_grosz(xy[0],xy[1],fill=CLOUD_COLOR if gefuellt else "none")
+        s += wolke_grosz(xy[0],xy[1],offen=4 if mit_wind else 0,fill=CLOUD_COLOR if gefuellt else "none")
+        if mit_wind:
+            # wind symbol
+            s += windsymbol(xy[0]+8,xy[1]-4,0.5)
     return s
 
 def nebel():
@@ -418,6 +437,7 @@ def nebel():
 
 def wind():
     """ wind """
+    return windsymbol(-45,0)
     s = '<path stroke-width="6" stroke="#404040" fill="none" d="M-45,-15 h40 a12,12 0 1 0 -12,-12 M-45,0 h75 a12,12 0 1 0 -12,-12 M-45,15 h57.5 a12,12 0 1 1 -12,12" />'
     return s
 
@@ -646,8 +666,14 @@ if options.writesvg:
         ('freezingrain2',gefrierender_regen4(gefuellt=gefuellt,innen=False))
     ]
     for idx,val in enumerate(N_ICON_LIST):
-        s = bewoelkt(val[0],val[1],val[2],gefuellt=gefuellt)
+        s = bewoelkt(val[0],val[1],val[2],0,gefuellt=gefuellt)
         with open(val[3]+'.svg','w') as file:
+            file.write(WW_XML)
+            file.write(WW_SVG1 % (128,100))
+            file.write(s)
+            file.write(WW_SVG2)
+        s = bewoelkt(val[0],val[1],val[2],3,gefuellt=gefuellt)
+        with open(val[3]+'-wind.svg','w') as file:
             file.write(WW_XML)
             file.write(WW_SVG1 % (128,100))
             file.write(s)
@@ -670,6 +696,7 @@ if options.writepy:
     s += "SVG_ICON_END = '%s'\n" % WW_SVG2
     s += "SVG_ICON_UNKNOWN = '%s'\n" % unknown()
     s += "SVG_ICON_CLOUDY = '%s'\n" % bewoelkt(4,gefuellt=options.filled)
+    s += "SVG_ICON_CLOUDY_WIND = '%s'\n" % bewoelkt(4,mit_wind=3,gefuellt=options.filled)
     s += "SVG_ICON_FOG = '%s'\n" % nebel()
     s += "SVG_ICON_WIND = '%s'\n" % wind()
     s += "SVG_ICON_RAIN = '%s'\n" % regen_gesamt(gefuellt=options.filled)
@@ -686,7 +713,7 @@ if options.writepy:
             s += "    ('"
         else:
             s += "     '"
-        s += bewoelkt(val[0],val[1],val[2],gefuellt=options.filled)
+        s += bewoelkt(val[0],val[1],val[2],0,gefuellt=options.filled)
         if val[2]:
             s += "'),"
         else:
@@ -696,13 +723,31 @@ if options.writepy:
     s += "    (SVG_ICON_FOG,SVG_ICON_FOG),\n"
     s += "    (SVG_ICON_UNKNOWN,SVG_ICON_UNKNOWN)\n"
     s += ']\n\n'
-    s += 'def svg_icon_n(okta, night=False, width=128):\n'
+    s += "SVG_ICON_N_WIND = [\n"
+    for idx,val in enumerate(N_ICON_LIST):
+        if idx==4: break
+        if val[1]:
+            s += "    ('"
+        else:
+            s += "     '"
+        s += bewoelkt(val[0],val[1],val[2],3,gefuellt=options.filled)
+        if val[2]:
+            s += "'),"
+        else:
+            s += "',"
+        s += '\n'
+    s += "    (SVG_ICON_CLOUDY_WIND,SVG_ICON_CLOUDY_WIND),\n"
+    s += "    (SVG_ICON_FOG,SVG_ICON_FOG),\n"
+    s += "    (SVG_ICON_UNKNOWN,SVG_ICON_UNKNOWN)\n"
+    s += ']\n\n'
+    s += 'def svg_icon_n(okta, night=False, wind=0, width=128):\n'
     s += '    try:\n'
     s += '        height = width * 0.78125\n'
     s += '        night = 1 if night else 0\n'
     s += '        idx = (0,1,1,2,2,2,3,3,4,5,6)[okta]\n'
+    s += '        icon = SVG_ICON_N_WIND if wind else SVG_ICON_N\n'
     s += '        return ((SVG_ICON_START % (width,height))+\n'
-    s += '            SVG_ICON_N[idx][night]+\n'
+    s += '            icon[idx][night]+\n'
     s += '            SVG_ICON_END)\n'
     s += '    except (ArithmeticError,LookupError,TypeError,ValuError):\n'
     s += '        return ""\n\n'
