@@ -177,7 +177,23 @@ def raindrop_icon_15px():
     s += regentropfen(0,0,6.95)
     s += '</svg>'
     return s
-    
+
+def sun_icon_15px(gefuellt=False):
+    s = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="15px" height="15px" viewBox="-40 -40 80 80">'
+    s += '<g stroke-width="%s">' % 5.7
+    s += sonne(fill=SUN_COLOR if gefuellt else "none")
+    s += '</g>'
+    s += '</svg>'
+    return s
+
+def moon_icon_15px(gefuellt=False):
+    s = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="15px" height="15px" viewBox="-40 -40 80 80">'
+    s += '<g stroke-width="%s">' % 5.7
+    s += mond(fill=MOON_COLOR if gefuellt else "none")
+    s += '</g>'
+    s += '</svg>'
+    return s
+
 def wetterleuchten(gefuellt=False):
     """ lightning, thunderstorm without precipitation """
     s = wolke_grosz(-31,28,fill=CLOUD_COLOR if gefuellt else "none")
@@ -704,6 +720,10 @@ if options.writesvg:
         file.write(snowflake_icon_15px())
     with open('raindrop-icon-15px.svg','w') as file:
         file.write(raindrop_icon_15px())
+    with open('sun-icon-15px.svg','w') as file:
+        file.write(sun_icon_15px(gefuellt=gefuellt))
+    with open('moon-icon-15px.svg','w') as file:
+        file.write(moon_icon_15px(gefuellt=gefuellt))
 
 
 if options.writepy:
