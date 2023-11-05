@@ -190,6 +190,12 @@ def wetterleuchten2(gefuellt=False):
     s += blitz(-4,38)
     return s
 
+def wetterleuchten3(gefuellt=False):
+    """ lightning, thunderstorm without precipitation, another design """
+    s = wolke_grosz(-31,22,offen=12,fill=CLOUD_COLOR if gefuellt else "none")
+    s += blitz(-2,45)
+    return s
+
 def gewitter(gefuellt=False):
     """ thunderstorm with rain """
     s = wolke_grosz(-31,22,offen=4,fill=CLOUD_COLOR if gefuellt else "none")
@@ -306,6 +312,14 @@ def gefrierender_regen4(gefuellt=False,innen=False):
     s += '</g>'
     return s
 
+def nach_gefrierendem_regen(gefuellt=False,innen=False):
+    """ after freezing rain (slithering line below the cloud) """
+    scale = 0.9
+    s = wolke(-31*scale,11,scale=scale,offen=0,fill=CLOUD_COLOR if gefuellt else "none")
+    s += schlitterlinie(4.6,44)
+    s += schneeflocke(-17,30,8,innen=innen)
+    return s
+    
 def unknown(color=CLOUD_COLOR):
     """ unknown weather or no data """
     s = wolke_grosz(-31,28,color=color)
@@ -564,6 +578,7 @@ ICON_WW = {
   18:'SVG_ICON_WIND',
   19:"'"+tornado()+"'",
   # 20...29: finished weather
+  24:"'"+nach_gefrierendem_regen()+"'",
   # 30...39: wind
   # 40...49: mist and fog
   50:'SVG_ICON_DRIZZLE',
@@ -648,7 +663,7 @@ if options.writesvg:
     WW_ICON_LIST = [
         ('unknown',unknown()),
         ('fog',nebel()),
-        ('lightning',wetterleuchten2(gefuellt)),
+        ('lightning',wetterleuchten3(gefuellt)),
         ('lightning2',wetterleuchten(gefuellt)),
         ('thunderstorm',gewitter(gefuellt)),
         ('thunderstorm-hail',hagelgewitter(gefuellt)),
@@ -663,7 +678,8 @@ if options.writesvg:
         ('hail',hagel(gefuellt)),
         ('wind',wind()),
         ('freezingrain',gefrierender_regen(gefuellt=gefuellt,innen=False)),
-        ('freezingrain2',gefrierender_regen4(gefuellt=gefuellt,innen=False))
+        ('freezingrain2',gefrierender_regen4(gefuellt=gefuellt,innen=False)),
+        ('glazeice',nach_gefrierendem_regen(gefuellt=gefuellt,innen=False))
     ]
     for idx,val in enumerate(N_ICON_LIST):
         s = bewoelkt(val[0],val[1],val[2],0,gefuellt=gefuellt)
@@ -705,7 +721,7 @@ if options.writepy:
     s += "SVG_ICON_SLEET = '%s'\n" % schneeregen(gefuellt=options.filled)
     s += "SVG_ICON_SNOW = '%s'\n" % schneefall(gefuellt=options.filled)
     s += "SVG_ICON_FREEZINGRAIN = '%s'\n" % gefrierender_regen(gefuellt=options.filled)
-    s += "SVG_ICON_LIGHTNING = '%s'\n" % wetterleuchten(gefuellt=options.filled)
+    s += "SVG_ICON_LIGHTNING = '%s'\n" % wetterleuchten3(gefuellt=options.filled)
     s += "SVG_ICON_N = [\n"
     for idx,val in enumerate(N_ICON_LIST):
         if idx==8: break
@@ -753,13 +769,11 @@ if options.writepy:
     s += '        return ""\n\n'
     s += 'SVG_ICON_WW = [\n'
     for idx in range(100):
-        if idx<20 or idx>=50:
+        if idx<30 or idx>=50:
             if idx in ICON_WW:
                 s += "    # %02d\n    %s,\n" % (idx,ICON_WW[idx])
             else:
                 s += '    # %02d\n    None,\n' % idx
-        elif idx<30:
-            s += '    # %02d\n    None,\n' % idx
         elif idx<40:
             s += '    # %02d\n    SVG_ICON_WIND,\n' % idx
         else:
