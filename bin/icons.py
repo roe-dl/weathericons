@@ -394,7 +394,7 @@ def bewoelkt(wolke=1,mit_sonne=False,mit_mond=False,mit_wind=0,gefuellt=False):
             if gefuellt:
                 s += mond(fill=MOON_COLOR if gefuellt else "none")
             else:
-                s += '<path stroke="%s" fill="none" d="M 19.97705974,-2.12865019 a 24,24 0 0 0 -19.97705974,-28.87134981 a 26,26 0 0 1 -22,39 a 24,24 0 0 0 11.27165715,7.62388061" />' % MOON_COLOR
+                s += '<path stroke="%s" fill="none" d="M%s,%s a 24,24 0 0 0 -19.97705974,-28.87134981 a 26,26 0 0 1 -22,39 a 24,24 0 0 0 11.27165715,7.62388061" />' % (MOON_COLOR,19.97705974-(21 if mit_wind else 0),-2.12865019+(7 if mit_wind else 0))
         elif wolke>=2:
             #s += '<path stroke="#da4935" fill="none" d="M -34,-43 a 26,26 0 0 1 -22,39 a 24,24 0 1 0 22,-39 z" />'
             if gefuellt:
@@ -708,7 +708,7 @@ if options.writepy:
     s += "SVG_ICON_LIGHTNING = '%s'\n" % wetterleuchten(gefuellt=options.filled)
     s += "SVG_ICON_N = [\n"
     for idx,val in enumerate(N_ICON_LIST):
-        if idx==4: break
+        if idx==8: break
         if val[1]:
             s += "    ('"
         else:
@@ -725,7 +725,7 @@ if options.writepy:
     s += ']\n\n'
     s += "SVG_ICON_N_WIND = [\n"
     for idx,val in enumerate(N_ICON_LIST):
-        if idx==4: break
+        if idx==8: break
         if val[1]:
             s += "    ('"
         else:
