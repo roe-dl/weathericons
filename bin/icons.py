@@ -84,8 +84,8 @@ def wolke(x,y,scale=1.0,offen=0,color=CLOUD_COLOR,fill="none"):
 def blitz(x,y):
     """ lightning """
     #s= '<path stroke="none" fill="#f6bc68" d="M %s,%s l 7.93687345,-20.67626223 l -12.84686959,3.44230833 l 6.81974614,-17.76604611 h -4.30643568 l -5.54018777,20.67626223 l 12.68569967,-3.39912298 z" />' % (x,y)
-    s= '<path stroke="none" fill="%s" d="M %s,%s l 8.03418996,-20.9297804 l -12.4943457,3.34784984 l 6.68617042,-17.41806944 h -5.42818409 l -4.83202054,20.9297804 l 12.02652853,-3.22249861 z" />' % (SUN_COLOR,x,y)
-    s = '<path stroke="none" fill="%s" d="M%s,%s l9.12538211,-21.49805304 l-12.39550268,3.32136493 l7.14107222,-16.82331189 h-8.81753557 l-4.1787982,21.49805304 l12.39550268,-3.32136493 z" />' % (SUN_COLOR,x,y)
+    #s= '<path stroke-width="2" stroke-linejoin="round" stroke="%s" fill="%s" d="M %s,%s l 8.03418996,-20.9297804 l -12.4943457,3.34784984 l 6.68617042,-17.41806944 h -5.42818409 l -4.83202054,20.9297804 l 12.02652853,-3.22249861 z" />' % (SUN_COLOR,SUN_COLOR,x,y)
+    s = '<path stroke-width="2" stroke-linejoin="round" stroke="%s" fill="%s" d="M%s,%s l9.12538211,-21.49805304 l-12.39550268,3.32136493 l7.14107222,-16.82331189 h-8.81753557 l-4.1787982,21.49805304 l12.39550268,-3.32136493 z" />' % (SUN_COLOR,SUN_COLOR,x,y)
     return s
 
 def regen(x=-28, y=10, v=30):
@@ -229,6 +229,13 @@ def hagelgewitter(gefuellt=False):
     s += '<circle cx="-6" cy="%s" r="4" />' % (25 if gefuellt else 19)
     s += '<circle cx="11" cy="%s" r="4" />' % (36 if gefuellt else 30)
     s += '</g>'
+    return s
+
+def sandsturmgewitter(gefuellt=False):
+    """ thunderstorm with duststorm """
+    s = wolke_grosz(-31,22-7.5,offen=4,fill=CLOUD_COLOR if gefuellt else "none")
+    s += blitz(-4,6-7.5)
+    s += windsymbol(-31+8,22-4+7.5,0.5)
     return s
 
 def regen_gesamt(gefuellt=False):
@@ -684,6 +691,7 @@ if options.writesvg:
         ('lightning2',wetterleuchten(gefuellt)),
         ('thunderstorm',gewitter(gefuellt)),
         ('thunderstorm-hail',hagelgewitter(gefuellt)),
+        #('thunderstorm-duststorm',sandsturmgewitter(gefuellt)),
         ('rain',regen_gesamt(gefuellt)),
         ('drizzle',niesel_gesamt(gefuellt)),
         ('snowflake',schneeflocke(0,0,40,False)),
@@ -743,8 +751,8 @@ if options.writepy:
     s += "SVG_ICON_RAIN = '%s'\n" % regen_gesamt(gefuellt=options.filled)
     s += "SVG_ICON_DRIZZLE = '%s'\n" % niesel_gesamt(gefuellt=options.filled)
     s += "SVG_ICON_HAIL = '%s'\n" % hagel(gefuellt=options.filled)
-    s += "SVG_ICON_SLEET = '%s'\n" % schneeregen(gefuellt=options.filled)
-    s += "SVG_ICON_SNOW = '%s'\n" % schneefall(gefuellt=options.filled)
+    s += "SVG_ICON_SLEET = '%s'\n" % schneeregen(gefuellt=options.filled,innen=False)
+    s += "SVG_ICON_SNOW = '%s'\n" % schneefall(gefuellt=options.filled,innen=False)
     s += "SVG_ICON_FREEZINGRAIN = '%s'\n" % gefrierender_regen(gefuellt=options.filled)
     s += "SVG_ICON_LIGHTNING = '%s'\n" % wetterleuchten3(gefuellt=options.filled)
     s += "SVG_ICON_N = [\n"
