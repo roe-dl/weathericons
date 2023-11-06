@@ -18,9 +18,9 @@
 import math
 import optparse
 
-WW_XML = '<?xml version="1.0" encoding="UTF-8" standalone="no"?> <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"> '
+WW_XML = '<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">\n'
 WW_SVG1 = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="%s" height="%s" viewBox="-64 -50 128 100"><g stroke-width="3">'
-WW_SVG2 = '</g></svg>'
+WW_SVG2 = '</g></svg>\n'
 
 SUN_COLOR   = "#f6bc68"
 MOON_COLOR  = "#da4935"
@@ -85,6 +85,7 @@ def blitz(x,y):
     """ lightning """
     #s= '<path stroke="none" fill="#f6bc68" d="M %s,%s l 7.93687345,-20.67626223 l -12.84686959,3.44230833 l 6.81974614,-17.76604611 h -4.30643568 l -5.54018777,20.67626223 l 12.68569967,-3.39912298 z" />' % (x,y)
     s= '<path stroke="none" fill="%s" d="M %s,%s l 8.03418996,-20.9297804 l -12.4943457,3.34784984 l 6.68617042,-17.41806944 h -5.42818409 l -4.83202054,20.9297804 l 12.02652853,-3.22249861 z" />' % (SUN_COLOR,x,y)
+    s = '<path stroke="none" fill="%s" d="M%s,%s l9.12538211,-21.49805304 l-12.39550268,3.32136493 l7.14107222,-16.82331189 h-8.81753557 l-4.1787982,21.49805304 l12.39550268,-3.32136493 z" />' % (SUN_COLOR,x,y)
     return s
 
 def regen(x=-28, y=10, v=30):
@@ -717,12 +718,16 @@ if options.writesvg:
             file.write(val[1])
             file.write(WW_SVG2)
     with open('snowflake-icon-15px.svg','w') as file:
+        file.write(WW_XML)
         file.write(snowflake_icon_15px())
     with open('raindrop-icon-15px.svg','w') as file:
+        file.write(WW_XML)
         file.write(raindrop_icon_15px())
     with open('sun-icon-15px.svg','w') as file:
+        file.write(WW_XML)
         file.write(sun_icon_15px(gefuellt=gefuellt))
     with open('moon-icon-15px.svg','w') as file:
+        file.write(WW_XML)
         file.write(moon_icon_15px(gefuellt=gefuellt))
 
 
