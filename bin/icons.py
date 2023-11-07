@@ -93,20 +93,22 @@ def regen(x=-28, y=10, v=30):
     h = round(v*22/30,14)
     s = '<path stroke="none" fill="%s" d="M %s,%s ' % (RAIN_COLOR,x,y)
     for i in range(3):
-        s += 'h 5 l %s,%s h -5 l %s,%s z ' % (h,v,-h,-v)
+        s += 'h5 l%s,%s h-5 l%s,%s z ' % (h,v,-h,-v)
         if i<2: s += 'm 15,0 '
     s += '" />'
     return s
     
-def niesel(x=-28,y=10,anzahl=5):
+def niesel(x=-28, y=10, v=30, anzahl=5):
     """ drizzle """
-    x += 1.5+22
-    y += 30
-    s = '<path stroke="%s" fille="none" stroke-dasharray="4 9" stroke-width="2" d="M %s,%s ' % (RAIN_COLOR,x,y)
+    h = round(v*22/30,14)
+    dash = "4 9" if v/13>2.2 else "3.5 7.5"
+    x += 1.5+h
+    y += v
+    s = '<path stroke="%s" fille="none" stroke-dasharray="%s" stroke-width="2" d="M%s,%s ' % (RAIN_COLOR,dash,x,y)
     for i in range(anzahl):
         sign = 1 if i%2 else -1
-        s += 'l %s,%s ' % (22*sign,30*sign)
-        if i<4: s += 'm 7.5,0 '
+        s += 'l%s,%s ' % (h*sign,v*sign)
+        if i<4: s += 'm7.5,0 '
     s += '" />'
     return s
 
@@ -262,7 +264,7 @@ def schneeregen(gefuellt=False,innen=True):
     """ sleet """
     s = wolke_grosz(-31,22,offen=4,fill=CLOUD_COLOR if gefuellt else "none")
     s += schneeflocke(-13,33,10,innen)
-    s += niesel(-10,10,3)
+    s += niesel(-10,10,anzahl=3)
     return s
 
 def hagel(gefuellt=False):
@@ -280,6 +282,15 @@ def glatt(gefuellt=False):
     s += schneeflocke(-23,32.5,10,innen=False)
     return s
 
+def gefrierender_nieselregen(gefuellt=False,innen=False):
+    """ freezing drizzle (slithering line below the cloud) """
+    scale = 0.85
+    s = wolke(-31*scale,4,scale=scale,offen=4,fill=CLOUD_COLOR if gefuellt else "none")
+    s += niesel(-27,-7,30*scale)
+    s += schlitterlinie(4.6,48)
+    s += schneeflocke(-17,34,8,innen=innen)
+    return s
+    
 def gefrierender_regen(gefuellt=False,innen=False):
     """ freezing rain (slithering line below the cloud) """
     scale = 0.85
@@ -314,26 +325,26 @@ def gefrierender_regen(gefuellt=False,innen=False):
     return s
 '''
 
+def schleudergefahr():
+    """ traffic sign like """
+    b = 42
+    h = b*0.5
+    v = round(b*math.sin(60*math.pi/180),8)
+    s = '<path stroke="#F0F0F0" stroke-width="8" stroke-linejoin="round" fill="#F0F0F0" d="M10,42 l%s,%s l%s,%s z" />' % (h,-v,h,v)
+    v = round(b*math.sin(60*math.pi/180),8)
+    s += '<path stroke="#b52126" stroke-width="6" stroke-linejoin="round" fill="none" d="M10,42 l%s,%s l%s,%s z" />' % (h,-v,h,v)
+    s += '<g transform="scale(0.5)">'
+    s += schlitterlinie(23*2+15,37*2)
+    s += '</g>'
+    return s
+
 def gefrierender_regen4(gefuellt=False,innen=False):
     """ freezing rain (traffic sign like) """
     #s = wolke(-31+21,22-14,scale=0.85,offen=4,fill=CLOUD_COLOR if gefuellt else "none")
     #s += regen(-28+17,10-14,30*0.85)
     s = wolke_grosz(-31-7,22-7,offen=4,fill=CLOUD_COLOR if gefuellt else "none")
     s += regen(-28-7,10-7,30)
-    b = 42
-    h = b*0.5
-    v = round(b*math.sin(60*math.pi/180),8)
-    #s += '<path stroke="none" fill="#F0F0F0" d="M-60,46 l%s,%s l%s,%s z" />' % (h,-v,h,v)
-    s += '<path stroke="#F0F0F0" stroke-width="8" stroke-linejoin="round" fill="#F0F0F0" d="M10,42 l%s,%s l%s,%s z" />' % (h,-v,h,v)
-    b = 42
-    h = b*0.5
-    v = round(b*math.sin(60*math.pi/180),8)
-    #s += '<path stroke="#FF0000" stroke-width="6" stroke-linecap="round" fill="none" d="M-56,42 l%s,%s l%s,%s z" />' % (h,-v,h,v)
-    s += '<path stroke="#b52126" stroke-width="6" stroke-linejoin="round" fill="none" d="M10,42 l%s,%s l%s,%s z" />' % (h,-v,h,v)
-    s += '<g transform="scale(0.5)">'
-    #s += schlitterlinie(-23*2-25,37*2)
-    s += schlitterlinie(23*2+15,37*2)
-    s += '</g>'
+    s += schleudergefahr()
     return s
 
 def nach_gefrierendem_regen(gefuellt=False,innen=False):
@@ -344,6 +355,12 @@ def nach_gefrierendem_regen(gefuellt=False,innen=False):
     s += schneeflocke(-17,30,8,innen=innen)
     return s
     
+def nach_gefrierendem_regen4(gefuellt=False,innen=False):
+    """ freezing rain (traffic sign like) """
+    s = wolke_grosz(-31-7,22-7,offen=0,fill=CLOUD_COLOR if gefuellt else "none")
+    s += schleudergefahr()
+    return s
+
 def unknown(color=CLOUD_COLOR):
     """ unknown weather or no data """
     s = wolke_grosz(-31,28,color=color)
@@ -433,12 +450,20 @@ def bewoelkt(wolke=1,mit_sonne=False,mit_mond=False,mit_wind=0,gefuellt=False):
                 s += mond(fill=MOON_COLOR if gefuellt else "none")
             else:
                 s += '<path stroke="%s" fill="none" d="M%s,%s a 24,24 0 0 0 -19.97705974,-28.87134981 a 26,26 0 0 1 -22,39 a 24,24 0 0 0 11.27165715,7.62388061" />' % (MOON_COLOR,19.97705974-(21 if mit_wind else 0),-2.12865019+(7 if mit_wind else 0))
-        elif wolke>=2:
+        elif wolke==2:
             #s += '<path stroke="#da4935" fill="none" d="M -34,-43 a 26,26 0 0 1 -22,39 a 24,24 0 1 0 22,-39 z" />'
             if gefuellt:
                 s += mond(-34,-43,fill=MOON_COLOR if gefuellt else "none")
             else:
-                s += '<path stroke="%s" fill="none" d="M -13.88,-23.64 a 24,24 0 0 0 -20.12,-19.36 a 26,26 0 0 1 -22,39 a 24,24 0 0 0 11.44,7.68 m 30.68,-27.32 a 24,24 0 0 0 -20.12,-19.36 " />' % MOON_COLOR
+                #s += '<path stroke="%s" fill="none" d="M-13.88,-23.64 a24,24 0 0 0 -20.12,-19.36 a26,26 0 0 1 -22,39 a 24,24 0 0 0 11.44,7.68 m 30.68,-27.32 a 24,24 0 0 0 -20.12,-19.36 " />' % MOON_COLOR
+                s += '<path stroke="%s" fill="none" d="M-13.88,-23.64 a24,24 0 0 0 -20.12,-19.36 a26,26 0 0 1 -22,39 a 24,24 0 0 0 11.44,7.68" />' % MOON_COLOR
+            xy = (-25,28)
+        elif wolke>=3:
+            if gefuellt:
+                s += mond(-29,-33,fill=MOON_COLOR if gefuellt else "none")
+            else:
+                s += '<path stroke="%s" fill="none" d="M-13.518,-23.978 a24,24 0 0 0 -15.482,-9.022 a26,26 0 0 1 2.200,21.081 m-17.992,17.040 a26,26 0 0 1 -6.208,0.879  a 24,24 0 0 0 6.290,5.392" />' % MOON_COLOR
+                #s += '<path stroke="%s" fill="none" d="M-16.320,-20.597 a24,24 0 0 0 -17.680,-12.403 a26,26 0 0 1 1.744,22.363 m-12.107,13.628 a26,26 0 0 1 -11.637,3.009  a 24,24 0 0 0 11.860,7.802" />' % MOON_COLOR
             xy = (-25,28)
     if wolke>=3:
         # mostly cloudy day or night or overcast
@@ -611,8 +636,8 @@ ICON_WW = {
   53:'SVG_ICON_DRIZZLE',
   54:'SVG_ICON_DRIZZLE',
   55:'SVG_ICON_DRIZZLE',
-  56:'SVG_ICON_FREEZINGRAIN',
-  57:'SVG_ICON_FREEZINGRAIN',
+  56:'SVG_ICON_FREEZINGDRIZZLE',
+  57:'SVG_ICON_FREEZINGDRIZZLE',
   58:'SVG_ICON_RAIN',
   59:'SVG_ICON_RAIN',
   60:'SVG_ICON_RAIN',
@@ -704,7 +729,9 @@ if options.writesvg:
         ('wind',wind()),
         ('freezingrain',gefrierender_regen(gefuellt=gefuellt,innen=False)),
         ('freezingrain2',gefrierender_regen4(gefuellt=gefuellt,innen=False)),
-        ('glazeice',nach_gefrierendem_regen(gefuellt=gefuellt,innen=False))
+        ('freezingdrizzle',gefrierender_nieselregen(gefuellt=gefuellt,innen=False)),
+        ('glazeice',nach_gefrierendem_regen(gefuellt=gefuellt,innen=False)),
+        #('glazeice2',nach_gefrierendem_regen4(gefuellt=gefuellt,innen=False))
     ]
     for idx,val in enumerate(N_ICON_LIST):
         s = bewoelkt(val[0],val[1],val[2],0,gefuellt=gefuellt)
@@ -754,6 +781,7 @@ if options.writepy:
     s += "SVG_ICON_SLEET = '%s'\n" % schneeregen(gefuellt=options.filled,innen=False)
     s += "SVG_ICON_SNOW = '%s'\n" % schneefall(gefuellt=options.filled,innen=False)
     s += "SVG_ICON_FREEZINGRAIN = '%s'\n" % gefrierender_regen(gefuellt=options.filled)
+    s += "SVG_ICON_FREEZINGDRIZZLE = '%s'\n" % gefrierender_nieselregen(gefuellt=options.filled,innen=False)
     s += "SVG_ICON_LIGHTNING = '%s'\n" % wetterleuchten3(gefuellt=options.filled)
     s += "SVG_ICON_N = [\n"
     for idx,val in enumerate(N_ICON_LIST):
