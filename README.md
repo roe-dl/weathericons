@@ -18,17 +18,17 @@ N | 0/8 | 1/8, 2/8 | 3/8, 4/8, 5/8 | 6/8, 7/8 | 8/8
 Tag-Wind /day-wind | ![clear day](weathericons/clear-day-wind.svg) | ![mostly clear day](weathericons/mostly-clear-day-wind.svg) | ![partly cloudy day](weathericons/partly-cloudy-day-wind.svg) | ![mostly cloudy day](weathericons/mostly-cloudy-day-wind.svg) | ![cloudy](weathericons/cloudy-wind.svg)
 Nacht-Wind / night-wind |![clear night](weathericons/clear-night-wind.svg) | ![mostly clear night](weathericons/mostly-clear-night-wind.svg) | ![partly cloudy night](weathericons/partly-cloudy-night-wind.svg) | ![mostly cloudy night](weathericons/mostly-cloudy-night-wind.svg) | wie Tag / like day
 
-Nebel / fog | Wind / wind
-------------|--------------
-![fog](weathericons/fog.svg) | ![wind](weathericons/wind.svg)
+Nebel / fog | Wind / wind | Schneefall / snow
+------------|--------------|---------------------
+![fog](weathericons/fog.svg) | ![wind](weathericons/wind.svg) | ![snow](weathericons/snow.svg) ![snow2](weathericons/snow2.svg)
 
 Niesel / drizzle | Regen / rain | Schneeregen / sleet | Hagel / hail |
 -----------------|--------------|---------------------|--------------|
 ![drizzle](weathericons/drizzle.svg) | ![rain](weathericons/rain.svg) | ![sleet](weathericons/sleet.svg) | ![hail](weathericons/hail.svg) | 
 
-gefrierender Regen / freezing rain | Glatteis / glaze ice | Schneefall / snow
+gefrierender Niesel / freezing drizzle | gefrierender Regen / freezing rain | Glatteis / glaze ice 
 -----------------------------------|------------------|----------------------
-![freezingrain](weathericons/freezingrain.svg) ![freezingrain](weathericons/freezingrain2.svg) | ![glaze ice](weathericons/glazeice.svg) | ![snow](weathericons/snow.svg) ![snow2](weathericons/snow2.svg)
+![freezingdrizzle](weathericons/freezingdrizzle.svg) | ![freezingrain](weathericons/freezingrain.svg) ![freezingrain](weathericons/freezingrain2.svg) | ![glaze ice](weathericons/glazeice.svg) 
 
 Wetterleuchten / lightning | Gewitter / thunderstorm | Hagelgewitter / thunderstorm with hail
 ---------------------------|-------------------------|---------------------------------------
