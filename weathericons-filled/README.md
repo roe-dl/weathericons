@@ -19,9 +19,13 @@ N | 0/8 | 1/8, 2/8 | 3/8, 4/8, 5/8 | 6/8, 7/8 | 8/8
 Tag-Wind /day-wind | ![clear day](clear-day-wind.svg) | ![mostly clear day](mostly-clear-day-wind.svg) | ![partly cloudy day](partly-cloudy-day-wind.svg) | ![mostly cloudy day](mostly-cloudy-day-wind.svg) | ![cloudy](cloudy-wind.svg)
 Nacht-Wind / night-wind |![clear night](clear-night-wind.svg) | ![mostly clear night](mostly-clear-night-wind.svg) | ![partly cloudy night](partly-cloudy-night-wind.svg) | ![mostly cloudy night](mostly-cloudy-night-wind.svg) | wie Tag / like day
 
-Nebel / fog | Schneeflocke / snowflake | keine Daten / no data | Wind / wind
-------------|--------------------------|-----------------------|------------
-![fog](fog.svg) | ![snowflake](snowflake.svg) ![snowflake](snowflake2.svg) | ![no data](unknown.svg) | ![wind](wind.svg)
+Wind / wind | Sandsturm / sandstorm | Schneetreiben / blowing snow
+------------|-----------------------|-------------------------------
+![wind](weathericons/wind.svg) | ![wind](weathericons/sandstorm.svg) | ![wind](weathericons/blowingsnow.svg) 
+
+Nebel / fog | gefrierender Niesel / freezing drizzle |gefrierender Regen / freezing rain | Glatteis / glaze ice
+------------|-------------|-------------------|------------------------------------
+![fog](fog.svg) | ![freezingdrizzle](freezingdrizzle.svg) | ![freezingrain](freezingrain.svg) ![freezingrain](freezingrain2.svg) | ![glaze ice](glazeice.svg)
 
 Niesel / drizzle | Regen / rain | Schneeregen / sleet | Hagel / hail | Schneefall / snow
 -----------------|--------------|---------------------|--------------|-------------------
@@ -30,6 +34,10 @@ Niesel / drizzle | Regen / rain | Schneeregen / sleet | Hagel / hail | Schneefal
 Wetterleuchten / lightning | Gewitter / thunderstorm | Hagelgewitter / thunderstorm with hail
 ---------------------------|-------------------------|---------------------------------------
 ![lightning](lightning.svg) ![lightning](lightning2.svg) | ![thunderstorm with rain](thunderstorm.svg) | ![thunderstorm with hail](thunderstorm-hail.svg)
+
+Regentropfen / raindrop | Schneeflocke / snowflake | keine Daten / no data
+------------------------|--------------------------|-----------------------
+![raindrop](raindrop.svg) | ![snowflake](snowflake.svg) ![snowflake](snowflake2.svg) | ![no data](unknown.svg)
 
 
 ## Lizenz und Nutzungsrechte

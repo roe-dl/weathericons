@@ -26,6 +26,8 @@ SUN_COLOR   = "#f6bc68"
 MOON_COLOR  = "#da4935"
 CLOUD_COLOR = "#828487"
 RAIN_COLOR  = "#66a1ba"
+# SAND_COLOR #a95c33 #a96132 #a47137
+SAND_COLOR = '#a96132'
 
 def sonne(x=0, y=0, color=SUN_COLOR, fill="none"):
     """ sun icon """
@@ -501,14 +503,24 @@ def nebel():
 def wind():
     """ wind """
     return windsymbol(-45,0)
-    s = '<path stroke-width="6" stroke="#404040" fill="none" d="M-45,-15 h40 a12,12 0 1 0 -12,-12 M-45,0 h75 a12,12 0 1 0 -12,-12 M-45,15 h57.5 a12,12 0 1 1 -12,12" />'
-    return s
 
 def tornado():
     """ tornado, funnel clouds """
     # TODO
     return ""
 
+def sandsturm():
+    """ Sand- und Staubsturm """
+    return windsymbol(-45,0,color=SAND_COLOR)
+
+def schneesturm(innen=False):
+    """ Schneesturm, Schneetreiben """
+    s = windsymbol(-60,0,color=RAIN_COLOR)
+    s += schneeflocke(30,30,10,innen=innen)
+    s += schneeflocke(50,5,10,innen=innen)
+    s += schneeflocke(42,-30,10,innen=innen)
+    return s
+    
 epfeil_coordinates = (
     (-0.1682952122,0.5728820612),
     (0.2461538364,-0.1269230985),
@@ -629,6 +641,16 @@ ICON_WW = {
   # 20...29: finished weather
   24:"'"+nach_gefrierendem_regen()+"'",
   # 30...39: wind
+  30:'SVG_ICON_SANDSTORM',
+  31:'SVG_ICON_SANDSTORM',
+  32:'SVG_ICON_SANDSTORM',
+  33:'SVG_ICON_SANDSTORM',
+  34:'SVG_ICON_SANDSTORM',
+  35:'SVG_ICON_SANDSTORM',
+  36:'SVG_ICON_BLOWINGSNOW',
+  37:'SVG_ICON_BLOWINGSNOW',
+  38:'SVG_ICON_BLOWINGSNOW',
+  39:'SVG_ICON_BLOWINGSNOW',
   # 40...49: mist and fog
   50:'SVG_ICON_DRIZZLE',
   51:'SVG_ICON_DRIZZLE',
@@ -727,11 +749,13 @@ if options.writesvg:
         ('sleet',schneeregen(gefuellt=gefuellt,innen=False)),
         ('hail',hagel(gefuellt)),
         ('wind',wind()),
+        ('sandstorm',sandsturm()),
         ('freezingrain',gefrierender_regen(gefuellt=gefuellt,innen=False)),
         ('freezingrain2',gefrierender_regen4(gefuellt=gefuellt,innen=False)),
         ('freezingdrizzle',gefrierender_nieselregen(gefuellt=gefuellt,innen=False)),
         ('glazeice',nach_gefrierendem_regen(gefuellt=gefuellt,innen=False)),
         #('glazeice2',nach_gefrierendem_regen4(gefuellt=gefuellt,innen=False))
+        ('blowingsnow',schneesturm(innen=False)),
     ]
     for idx,val in enumerate(N_ICON_LIST):
         s = bewoelkt(val[0],val[1],val[2],0,gefuellt=gefuellt)
@@ -775,6 +799,8 @@ if options.writepy:
     s += "SVG_ICON_CLOUDY_WIND = '%s'\n" % bewoelkt(4,mit_wind=3,gefuellt=options.filled)
     s += "SVG_ICON_FOG = '%s'\n" % nebel()
     s += "SVG_ICON_WIND = '%s'\n" % wind()
+    s += "SVG_ICON_SANDSTORM = '%s'\n" % sandsturm()
+    s += "SVG_ICON_BLOWINGSNOW = '%s'\n" % schneesturm(innen=False)
     s += "SVG_ICON_RAIN = '%s'\n" % regen_gesamt(gefuellt=options.filled)
     s += "SVG_ICON_DRIZZLE = '%s'\n" % niesel_gesamt(gefuellt=options.filled)
     s += "SVG_ICON_HAIL = '%s'\n" % hagel(gefuellt=options.filled)
@@ -830,13 +856,11 @@ if options.writepy:
     s += '        return ""\n\n'
     s += 'SVG_ICON_WW = [\n'
     for idx in range(100):
-        if idx<30 or idx>=50:
+        if idx<40 or idx>=50:
             if idx in ICON_WW:
                 s += "    # %02d\n    %s,\n" % (idx,ICON_WW[idx])
             else:
                 s += '    # %02d\n    None,\n' % idx
-        elif idx<40:
-            s += '    # %02d\n    SVG_ICON_WIND,\n' % idx
         else:
             s += '    # %02d\n    SVG_ICON_FOG,\n' % idx
     s += ']\n\n'
