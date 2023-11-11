@@ -21,7 +21,7 @@ Nacht-Wind / night-wind |![clear night](clear-night-wind.svg) | ![mostly clear n
 
 Wind / wind | Sandsturm / sandstorm | Schneetreiben / blowing snow
 ------------|-----------------------|-------------------------------
-![wind](weathericons/wind.svg) | ![wind](weathericons/sandstorm.svg) | ![wind](weathericons/blowingsnow.svg) 
+![wind](wind.svg) | ![wind](sandstorm.svg) | ![wind](blowingsnow.svg) 
 
 Nebel / fog | gefrierender Niesel / freezing drizzle |gefrierender Regen / freezing rain | Glatteis / glaze ice
 ------------|-------------|-------------------|------------------------------------
