@@ -22,9 +22,9 @@ Wind / wind | Sandsturm / sandstorm | Schneetreiben / blowing snow
 ------------|-----------------------|-------------------------------
 ![wind](weathericons/wind.svg) | ![wind](weathericons/sandstorm.svg) | ![wind](weathericons/blowingsnow.svg) 
 
-Nebel / fog | Schneefall / snow
-------------|----------------------------------
-![fog](weathericons/fog.svg) | ![snow](weathericons/snow.svg) ![snow2](weathericons/snow2.svg)
+Nebel / fog | Schneefall / snow | Sonne und Mond / sun and moon
+------------|-------------------|---------------
+![fog](weathericons/fog.svg) | ![snow](weathericons/snow.svg) ![snow2](weathericons/snow2.svg) | ![sun and moon](weathericons/sunmoon.svg)
 
 Niesel / drizzle | Regen / rain | Schneeregen / sleet | Hagel / hail |
 -----------------|--------------|---------------------|--------------|

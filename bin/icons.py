@@ -48,6 +48,11 @@ def mond(x=0, y=-24, color=MOON_COLOR, fill="none"):
     s = '<path stroke="%s" fill="%s" d="M %s,%s a 26,26 0 0 1 -22,39 a 24,24 0 1 0 22,-39 z" />' % (color,fill,x,y)
     return s
 
+def sonnemondicon(gefuellt=False):
+    s = sonne(-20,-5,fill=SUN_COLOR if gefuellt else "none")
+    s += mond(35,-5,fill=MOON_COLOR if gefuellt else "none")
+    return s
+
 def wolke_grosz(x,y,offen=0,color=CLOUD_COLOR,fill="none"):
     """ cloud, large version """
     if fill!="none": offen = 0
@@ -219,9 +224,15 @@ def wetterleuchten3(gefuellt=False):
 
 def gewitter(gefuellt=False):
     """ thunderstorm with rain """
-    s = wolke_grosz(-31,22,offen=4,fill=CLOUD_COLOR if gefuellt else "none")
-    s += blitz(-4,6)
-    s += regen()
+    if gefuellt:
+        scale = 0.85
+        s = wolke(-31*scale,8.5,scale=scale,offen=0,fill=CLOUD_COLOR if gefuellt else "none")
+        s += blitz(-4,2)
+        s += regen(-20,10,30)
+    else:
+        s = wolke_grosz(-31,22,offen=4,fill=CLOUD_COLOR if gefuellt else "none")
+        s += blitz(-4,6)
+        s += regen()
     return s
 
 def hagelgewitter(gefuellt=False):
@@ -244,19 +255,33 @@ def sandsturmgewitter(gefuellt=False):
 
 def regen_gesamt(gefuellt=False):
     """ rain """
-    s = wolke_grosz(-31,22,offen=4,fill=CLOUD_COLOR if gefuellt else "none")
-    s += regen()
+    if gefuellt:
+        scale = 0.85
+        s = wolke(-31*scale,8.5,scale=scale,offen=0,fill=CLOUD_COLOR if gefuellt else "none")
+        s += regen(-20,10,30)
+    else:
+        s = wolke_grosz(-31,22,offen=4,fill=CLOUD_COLOR if gefuellt else "none")
+        s += regen()
     return s
 
 def niesel_gesamt(gefuellt=False):
     """ drizzle """
-    s = wolke_grosz(-31,22,offen=4,fill=CLOUD_COLOR if gefuellt else "none")
-    s += niesel()
+    if gefuellt:
+        scale = 0.85
+        s = wolke(-31*scale,8.5,scale=scale,offen=0,fill=CLOUD_COLOR if gefuellt else "none")
+        s += niesel(-20,10,30)
+    else:
+        s = wolke_grosz(-31,22,offen=4,fill=CLOUD_COLOR if gefuellt else "none")
+        s += niesel()
     return s
 
 def schneefall(gefuellt=False,innen=True):
     """ snow """
-    s = wolke_grosz(-31,22,offen=4,fill=CLOUD_COLOR if gefuellt else "none")
+    if gefuellt:
+        scale = 0.85
+        s = wolke(-31*scale,8.5,scale=scale,offen=0,fill=CLOUD_COLOR if gefuellt else "none")
+    else:
+        s = wolke_grosz(-31,22,offen=4,fill=CLOUD_COLOR if gefuellt else "none")
     s += schneeflocke(-13,17,10,innen)
     s += schneeflocke(12,10,10,innen)
     s += schneeflocke(5,33,10,innen)
@@ -264,14 +289,23 @@ def schneefall(gefuellt=False,innen=True):
 
 def schneeregen(gefuellt=False,innen=True):
     """ sleet """
-    s = wolke_grosz(-31,22,offen=4,fill=CLOUD_COLOR if gefuellt else "none")
-    s += schneeflocke(-13,33,10,innen)
+    if gefuellt:
+        scale = 0.85
+        s = wolke(-31*scale,8.5,scale=scale,offen=0,fill=CLOUD_COLOR if gefuellt else "none")
+        s += schneeflocke(-15,30,10,innen)
+    else:
+        s = wolke_grosz(-31,22,offen=4,fill=CLOUD_COLOR if gefuellt else "none")
+        s += schneeflocke(-13,33,10,innen)
     s += niesel(-10,10,anzahl=3)
     return s
 
 def hagel(gefuellt=False):
     """ hail """
-    s = wolke_grosz(-31,22,offen=4,fill=CLOUD_COLOR if gefuellt else "none")
+    if gefuellt:
+        scale = 0.85
+        s = wolke(-31*scale,8.5,scale=scale,offen=0,fill=CLOUD_COLOR if gefuellt else "none")
+    else:
+        s = wolke_grosz(-31,22,offen=4,fill=CLOUD_COLOR if gefuellt else "none")
     s += '<g stroke="none" fill="%s">' % RAIN_COLOR
     s += '<circle cx="-15" cy="37" r="4" />'
     s += '<circle cx="-6" cy="19" r="4" />'
@@ -630,6 +664,7 @@ N_ICON_LIST = [
 
 # icons of present weather
 ICON_WW = {
+   4:'SVG_ICON_FOG',
    9:'SVG_ICON_WIND',
   11:'SVG_ICON_FOG',
   12:'SVG_ICON_FOG',
@@ -756,6 +791,7 @@ if options.writesvg:
         ('glazeice',nach_gefrierendem_regen(gefuellt=gefuellt,innen=False)),
         #('glazeice2',nach_gefrierendem_regen4(gefuellt=gefuellt,innen=False))
         ('blowingsnow',schneesturm(innen=False)),
+        ('sunmoon',sonnemondicon(gefuellt=gefuellt)),
     ]
     for idx,val in enumerate(N_ICON_LIST):
         s = bewoelkt(val[0],val[1],val[2],0,gefuellt=gefuellt)
@@ -809,6 +845,7 @@ if options.writepy:
     s += "SVG_ICON_FREEZINGRAIN = '%s'\n" % gefrierender_regen(gefuellt=options.filled)
     s += "SVG_ICON_FREEZINGDRIZZLE = '%s'\n" % gefrierender_nieselregen(gefuellt=options.filled,innen=False)
     s += "SVG_ICON_LIGHTNING = '%s'\n" % wetterleuchten3(gefuellt=options.filled)
+    s += "SVG_ICON_SUNMOON = '%s'\n" % sonnemondicon(gefuellt=options.filled)
     s += "SVG_ICON_N = [\n"
     for idx,val in enumerate(N_ICON_LIST):
         if idx==8: break

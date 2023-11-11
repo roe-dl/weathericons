@@ -19,9 +19,9 @@ N | 0/8 | 1/8, 2/8 | 3/8, 4/8, 5/8 | 6/8, 7/8 | 8/8
 Tag-Wind /day-wind | ![clear day](clear-day-wind.svg) | ![mostly clear day](mostly-clear-day-wind.svg) | ![partly cloudy day](partly-cloudy-day-wind.svg) | ![mostly cloudy day](mostly-cloudy-day-wind.svg) | ![cloudy](cloudy-wind.svg)
 Nacht-Wind / night-wind |![clear night](clear-night-wind.svg) | ![mostly clear night](mostly-clear-night-wind.svg) | ![partly cloudy night](partly-cloudy-night-wind.svg) | ![mostly cloudy night](mostly-cloudy-night-wind.svg) | wie Tag / like day
 
-Wind / wind | Sandsturm / sandstorm | Schneetreiben / blowing snow
-------------|-----------------------|-------------------------------
-![wind](wind.svg) | ![wind](sandstorm.svg) | ![wind](blowingsnow.svg) 
+Wind / wind | Sandsturm / sandstorm | Schneetreiben / blowing snow | Sonne und Mond / sun and moon
+------------|-----------------------|------------------------------|--------------
+![wind](wind.svg) | ![wind](sandstorm.svg) | ![wind](blowingsnow.svg) | ![sun and moon](sunmoon.svg)
 
 Nebel / fog | gefrierender Niesel / freezing drizzle |gefrierender Regen / freezing rain | Glatteis / glaze ice
 ------------|-------------|-------------------|------------------------------------
