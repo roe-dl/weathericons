@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
 <svg
    width="128"
    height="100"
@@ -8,7 +6,7 @@
    version="1.1"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
-  <g stroke="currentColor" stroke-width="0.79375" fill="none" opacity="1">
+  <g stroke="#828487" stroke-width="0.79375" fill="none" opacity="1">
     <path
        d="m 18.781008,21.736346 c 0.883318,0.100313 1.532041,0.433538 1.532041,0.829153 0,0.47498 -0.935116,0.860028 -2.08864,0.860028 -1.153524,0 -2.08864,-0.385048 -2.08864,-0.860028 0,-0.237826 0.23444,-0.453105 0.613351,-0.608791"
         />
