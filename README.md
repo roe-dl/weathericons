@@ -44,6 +44,10 @@ Wetterleuchten / lightning | Gewitter / thunderstorm | Hagelgewitter / thunderst
 ---------------------------|-------------------------|---------------------------------------
 ![lightning](weathericons/lightning.svg) ![lightning](weathericons/lightning2.svg) | ![thunderstorm with rain](weathericons/thunderstorm.svg) | ![thunderstorm with hail](weathericons/thunderstorm-hail.svg)
 
+Sandsturmgewitter / thunderstorm with sandstorm |
+------------------------------------------------|
+![thunderstorm-duststorm](weathericons/thunderstorm-duststorm.svg) |
+
 Regentropfen / raindrop | Schneeflocke / snowflake | keine Daten / no data 
 ------------------------|--------------------------|-----------------------
 ![raindrop](weathericons/raindrop.svg) | ![snowflake](weathericons/snowflake.svg) ![snowflake](weathericons/snowflake2.svg) | ![no data](weathericons/unknown.svg) 
@@ -79,6 +83,10 @@ gefrierender Niesel / freezing drizzle | gefrierender Regen / freezing rain | Gl
 Wetterleuchten / lightning | Gewitter / thunderstorm | Hagelgewitter / thunderstorm with hail
 ---------------------------|-------------------------|---------------------------------------
 ![lightning](weathericons-filled/lightning.svg) ![lightning](weathericons-filled/lightning2.svg) | ![thunderstorm with rain](weathericons-filled/thunderstorm.svg) | ![thunderstorm with hail](weathericons-filled/thunderstorm-hail.svg)
+
+Sandsturmgewitter / thunderstorm with sandstorm |
+------------------------------------------------|
+![thunderstorm-duststorm](weathericons-filled/thunderstorm-duststorm.svg) |
 
 Regentropfen / raindrop | Schneeflocke / snowflake | keine Daten / no data 
 ------------------------|--------------------------|-----------------------

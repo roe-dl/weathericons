@@ -248,9 +248,9 @@ def hagelgewitter(gefuellt=False):
 
 def sandsturmgewitter(gefuellt=False):
     """ thunderstorm with duststorm """
-    s = wolke_grosz(-31,22-7.5,offen=4,fill=CLOUD_COLOR if gefuellt else "none")
+    s = wolke_grosz(-31,22-7.5,offen=2,fill=CLOUD_COLOR if gefuellt else "none")
     s += blitz(-4,6-7.5)
-    s += windsymbol(-31+8,22-4+7.5,0.5)
+    s += windsymbol(-31+8,22-4+7.5,0.5,color=SAND_COLOR)
     return s
 
 def regen_gesamt(gefuellt=False):
@@ -773,7 +773,7 @@ if options.writesvg:
         ('lightning2',wetterleuchten(gefuellt)),
         ('thunderstorm',gewitter(gefuellt)),
         ('thunderstorm-hail',hagelgewitter(gefuellt)),
-        #('thunderstorm-duststorm',sandsturmgewitter(gefuellt)),
+        ('thunderstorm-duststorm',sandsturmgewitter(gefuellt)),
         ('rain',regen_gesamt(gefuellt)),
         ('drizzle',niesel_gesamt(gefuellt)),
         ('snowflake',schneeflocke(0,0,40,False)),

@@ -35,6 +35,10 @@ Wetterleuchten / lightning | Gewitter / thunderstorm | Hagelgewitter / thunderst
 ---------------------------|-------------------------|---------------------------------------
 ![lightning](lightning.svg) ![lightning](lightning2.svg) | ![thunderstorm with rain](thunderstorm.svg) | ![thunderstorm with hail](thunderstorm-hail.svg)
 
+Sandsturmgewitter / thunderstorm with sandstorm |
+------------------------------------------------|
+![thunderstorm-duststorm](thunderstorm-duststorm.svg) |
+
 Regentropfen / raindrop | Schneeflocke / snowflake | keine Daten / no data
 ------------------------|--------------------------|-----------------------
 ![raindrop](raindrop.svg) | ![snowflake](snowflake.svg) ![snowflake](snowflake2.svg) | ![no data](unknown.svg)
