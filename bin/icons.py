@@ -248,9 +248,15 @@ def hagelgewitter(gefuellt=False):
 
 def sandsturmgewitter(gefuellt=False):
     """ thunderstorm with duststorm """
-    s = wolke_grosz(-31,22-7.5,offen=2,fill=CLOUD_COLOR if gefuellt else "none")
-    s += blitz(-4,6-7.5)
-    s += windsymbol(-31+8,22-4+7.5,0.5,color=SAND_COLOR)
+    if gefuellt:
+        scale = 0.85
+        s = wolke(-31*scale,8.5-2,scale=scale,offen=0,fill=CLOUD_COLOR if gefuellt else "none")
+        s += blitz(-4,2-2)
+        s += windsymbol(-31+8,22-4+7.5+2,0.5*scale,color=SAND_COLOR)
+    else:
+        s = wolke_grosz(-31,22-7.5,offen=2,fill=CLOUD_COLOR if gefuellt else "none")
+        s += blitz(-4,6-7.5)
+        s += windsymbol(-31+8,22-4+7.5,0.5,color=SAND_COLOR)
     return s
 
 def regen_gesamt(gefuellt=False):
