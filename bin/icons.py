@@ -72,10 +72,12 @@ def wolke_klein(x,y,color=CLOUD_COLOR,fill="none"):
     s = '<path stroke="%s" stroke-width="1.8" fill="%s" d="M %s,%s a 12,12 0 1 1 2.92816105,-23.63726226 a 14.4,14.4 0 0 1 25.92035627,-5.69450347 a 9.75,9.75 0 0 1 10.15148268,5.93176573 a 12,12 0 0 1 -3.7469988,23.4 z " />' % (color,fill,x,y)
     return s
 
-def wolke(x,y,scale=1.0,offen=0,color=CLOUD_COLOR,fill="none"):
+def wolke(x,y,scale=1.0,offen=0,color=CLOUD_COLOR,fill="none",linewidth=None):
     if fill!="none": offen = 0
     offen *= scale
-    s = '<path stroke="%s" fill="%s" d="M %s,%s '  % (color,fill,x,y)
+    s = '<path stroke="%s" ' % color
+    if linewidth: s += 'stroke-width="%s" ' % linewidth
+    s += 'fill="%s" d="M %s,%s '  % (fill,x,y)
     if offen: s += 'm %s,0 h %s ' % (offen,-offen)
     s += 'a%s,%s 0 1 1 %s,%s ' % (20*scale,20*scale,4.88026841*scale,-39.3954371*scale)
     s += 'a%s,%s 0 0 1 %s,%s ' % (24*scale,24*scale,43.20059379*scale,-9.49083912*scale)
@@ -620,7 +622,7 @@ def solarpanel(pv, color1='currentColor', color2='#4c7ed3'):
     s += '</g>'
     return s
 
-def pvicon(gefuellt=False, color='currentColor'):
+def pvicon(bewoelkung=0,gefuellt=False, color='currentColor'):
     # sun circle
     cx = -32
     cy = -18
@@ -628,17 +630,26 @@ def pvicon(gefuellt=False, color='currentColor'):
     # sun beams
     ri = 19
     ro = 30
+    if bewoelkung==1:
+        beams = (3,4,5,6,7,0)
+        arc = (0.25,1.9,1)
     # pv
     pv = ((30,-20),(60,-10),(0,20),(35,45))
     # sun
     s = '<g stroke="%s">' % SUN_COLOR
-    s += '<circle cx="%s" cy="%s" r="%s" fill="%s" />' % (cx,cy,r,SUN_COLOR if gefuellt else 'none')
+    if bewoelkung==0 or gefuellt:
+        s += '<circle cx="%s" cy="%s" r="%s" fill="%s" />' % (cx,cy,r,SUN_COLOR if gefuellt else 'none')
+    else:
+        s += '<path fill="none" d="M%s,%s A%s,%s 0 %s 0 %s %s" />' % (round(cx+math.cos(arc[0])*r,14),cy+round(math.sin(arc[0])*r,14),r,r,arc[2],round(cx+math.cos(arc[1])*r,14),round(cy+math.sin(arc[1])*r,14))
     strahlen = []
     for i in range(8):
         w = math.pi*i/4
-        strahlen.append('M%s,%s L%s,%s ' % (round(math.cos(w)*ri,14)+cx,round(math.sin(w)*ri,14)+cy,round(math.cos(w)*ro,14)+cx,round(math.sin(w)*ro,14)+cy))
+        if bewoelkung==0 or i in beams:
+            strahlen.append('M%s,%s L%s,%s ' % (round(math.cos(w)*ri,14)+cx,round(math.sin(w)*ri,14)+cy,round(math.cos(w)*ro,14)+cx,round(math.sin(w)*ro,14)+cy))
     s += '<path fill="none" d="%s" />' % ' '.join(strahlen)
     s += '</g>'
+    if bewoelkung==1:
+        s += wolke(cx,cy+31,scale=0.4666666,fill="#A2A4A7" if gefuellt else "none",linewidth=1.8)
     s += solarpanel(pv,color,'#4c7ed3')
     s += epfeil(13,-10,35,'#d9040f')
     return s
@@ -920,7 +931,8 @@ if options.writepy:
 if options.writepvsvg:
 
     pv_list = (
-        ('photovoltaics',pvicon(options.filled)),
+        ('photovoltaics',pvicon(0,options.filled)),
+        ('photovoltaics-mostly-clear',pvicon(1,options.filled)),
         ('pvpanel',solarpanel(((10,-45),(58,-30),(-58,5),(10,45)))),
         ('accumulator',accumulator(100,'currentColor','#d2ee00'))
     )
