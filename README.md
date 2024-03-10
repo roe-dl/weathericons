@@ -95,9 +95,17 @@ Regentropfen / raindrop | Schneeflocke / snowflake | keine Daten / no data
 
 ### Photovoltaik-Symbole / photovoltaics icons
 
-Photovoltaik / photovoltaics | Solarpanel/pv panel | Batterie/accumulator
------------------------------|---------------------|---------------------
-![photovoltaics](photovoltaics/photovoltaics.svg) | ![pv panel](photovoltaics/pvpanel.svg) | ![accu](photovoltaics/accumulator.svg)
+Photovoltaik / photovoltaics | heiter/with cloud | Solarpanel/pv panel | Batterie/accumulator
+-----------------------------|---------------------|---------------------|-----------------
+![photovoltaics](photovoltaics/photovoltaics.svg) | ![pv with cloud](photovoltaics/photovoltaics-mostly-clear.svg) | ![pv panel](photovoltaics/pvpanel.svg) | ![accu](photovoltaics/accumulator.svg)
+
+----------------------------------------------------------------------------
+
+### Photovoltaik-Symbole, gefüllt / photovoltaics icons, filled
+
+Photovoltaik / photovoltaics | heiter/with cloud | Solarpanel/pv panel | Batterie/accumulator
+-----------------------------|---------------------|---------------------|-----------------
+![photovoltaics](photovoltaics-filled/photovoltaics.svg) | ![pv with cloud](photovoltaics-filled/photovoltaics-mostly-clear.svg) | ![pv panel](photovoltaics-filled/pvpanel.svg) | ![accu](photovoltaics-filled/accumulator.svg)
 
 ----------------------------------------------------------------------------
 
