@@ -95,17 +95,25 @@ Regentropfen / raindrop | Schneeflocke / snowflake | keine Daten / no data
 
 ### Photovoltaik-Symbole / photovoltaics icons
 
-Photovoltaik / photovoltaics | heiter/with cloud | Solarpanel/pv panel | Batterie/accumulator
------------------------------|---------------------|---------------------|-----------------
-![photovoltaics](photovoltaics/photovoltaics.svg) | ![pv with cloud](photovoltaics/photovoltaics-mostly-clear.svg) | ![pv panel](photovoltaics/pvpanel.svg) | ![accu](photovoltaics/accumulator.svg)
+Photovoltaik / photovoltaics | heiter/fair | Nacht/night
+-----------------------------|---------------------|---------------------
+![photovoltaics](photovoltaics/photovoltaics.svg) | ![pv with cloud](photovoltaics/photovoltaics-mostly-clear.svg) | ![night](photovoltaics/photovoltaics-night.svg) 
+
+Solarpanel/pv panel | Batterie/accumulator
+-----------------------------|---------------------
+![pv panel](photovoltaics/pvpanel.svg) | ![accu](photovoltaics/accumulator.svg)
 
 ----------------------------------------------------------------------------
 
 ### Photovoltaik-Symbole, gefüllt / photovoltaics icons, filled
 
-Photovoltaik / photovoltaics | heiter/with cloud | Solarpanel/pv panel | Batterie/accumulator
------------------------------|---------------------|---------------------|-----------------
-![photovoltaics](photovoltaics-filled/photovoltaics.svg) | ![pv with cloud](photovoltaics-filled/photovoltaics-mostly-clear.svg) | ![pv panel](photovoltaics-filled/pvpanel.svg) | ![accu](photovoltaics-filled/accumulator.svg)
+Photovoltaik / photovoltaics | heiter/fair | Nacht/night
+-----------------------------|---------------------|---------------------
+![photovoltaics](photovoltaics-filled/photovoltaics.svg) | ![pv with cloud](photovoltaics-filled/photovoltaics-mostly-clear.svg) | ![night](photovoltaics-filled/photovoltaics-night.svg) 
+
+Solarpanel/pv panel | Batterie/accumulator
+-----------------------------|---------------------
+![pv panel](photovoltaics-filled/pvpanel.svg) | ![accu](photovoltaics-filled/accumulator.svg)
 
 ----------------------------------------------------------------------------
 

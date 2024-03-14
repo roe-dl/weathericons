@@ -43,9 +43,13 @@ def sonne(x=0, y=0, color=SUN_COLOR, fill="none"):
     s += '</g>'
     return s
 
-def mond(x=0, y=-24, color=MOON_COLOR, fill="none"):
+def mond(x=0, y=-24, scale=1.0, color=MOON_COLOR, fill="none"):
     """ moon icon """
-    s = '<path stroke="%s" fill="%s" d="M %s,%s a 26,26 0 0 1 -22,39 a 24,24 0 1 0 22,-39 z" />' % (color,fill,x,y)
+    r1 = round(26*scale,7)
+    r2 = round(24*scale,7)
+    dx = round(22*scale,7)
+    dy = round(39*scale,7)
+    s = '<path stroke="%s" fill="%s" d="M %s,%s a %s,%s 0 0 1 %s,%s a %s,%s 0 1 0 %s,%s z" />' % (color,fill,x,y,r1,r1,-dx,dy,r2,r2,dx,-dy)
     return s
 
 def sonnemondicon(gefuellt=False):
@@ -636,22 +640,30 @@ def pvicon(bewoelkung=0,gefuellt=False, color='currentColor'):
     # pv
     pv = ((30,-20),(60,-10),(0,20),(35,45))
     # sun
-    s = '<g stroke="%s">' % SUN_COLOR
-    if bewoelkung==0 or gefuellt:
-        s += '<circle cx="%s" cy="%s" r="%s" fill="%s" />' % (cx,cy,r,SUN_COLOR if gefuellt else 'none')
+    if bewoelkung<4:
+        s = '<g stroke="%s">' % SUN_COLOR
+        if bewoelkung==0 or gefuellt:
+            s += '<circle cx="%s" cy="%s" r="%s" fill="%s" />' % (cx,cy,r,SUN_COLOR if gefuellt else 'none')
+        else:
+            s += '<path fill="none" d="M%s,%s A%s,%s 0 %s 0 %s %s" />' % (round(cx+math.cos(arc[0])*r,14),cy+round(math.sin(arc[0])*r,14),r,r,arc[2],round(cx+math.cos(arc[1])*r,14),round(cy+math.sin(arc[1])*r,14))
+        strahlen = []
+        for i in range(8):
+            w = math.pi*i/4
+            if bewoelkung==0 or i in beams:
+                strahlen.append('M%s,%s L%s,%s ' % (round(math.cos(w)*ri,14)+cx,round(math.sin(w)*ri,14)+cy,round(math.cos(w)*ro,14)+cx,round(math.sin(w)*ro,14)+cy))
+        s += '<path fill="none" d="%s" />' % ' '.join(strahlen)
+        s += '</g>'
+    elif bewoelkung==10:
+        s = mond(-30,-40,scale=0.7777777,fill=MOON_COLOR if gefuellt else "none")
     else:
-        s += '<path fill="none" d="M%s,%s A%s,%s 0 %s 0 %s %s" />' % (round(cx+math.cos(arc[0])*r,14),cy+round(math.sin(arc[0])*r,14),r,r,arc[2],round(cx+math.cos(arc[1])*r,14),round(cy+math.sin(arc[1])*r,14))
-    strahlen = []
-    for i in range(8):
-        w = math.pi*i/4
-        if bewoelkung==0 or i in beams:
-            strahlen.append('M%s,%s L%s,%s ' % (round(math.cos(w)*ri,14)+cx,round(math.sin(w)*ri,14)+cy,round(math.cos(w)*ro,14)+cx,round(math.sin(w)*ro,14)+cy))
-    s += '<path fill="none" d="%s" />' % ' '.join(strahlen)
-    s += '</g>'
+        s = ''
+    # cloud
     if bewoelkung==1:
         s += wolke(cx,cy+31,scale=0.4666666,fill="#A2A4A7" if gefuellt else "none",linewidth=1.8)
-    s += solarpanel(pv,color,'#4c7ed3')
-    s += epfeil(13,-10,35,'#d9040f')
+    elif bewoelkung==4:
+        s += wolke(-47,-9.5,scale=0.6,fill=CLOUD_COLOR if gefuellt else "none")
+    s += solarpanel(pv,color,'#808080' if bewoelkung>=10 else '#4c7ed3')
+    s += epfeil(13,-10,35,'#808080' if bewoelkung>=10 else '#d9040f')
     return s
 
 def accumulator(filled=100, color1='currentColor', color2="none"):
@@ -933,6 +945,8 @@ if options.writepvsvg:
     pv_list = (
         ('photovoltaics',pvicon(0,options.filled)),
         ('photovoltaics-mostly-clear',pvicon(1,options.filled)),
+        ('photovoltaics-cloudy',pvicon(4,options.filled)),
+        ('photovoltaics-night',pvicon(10,options.filled)),
         ('pvpanel',solarpanel(((10,-45),(58,-30),(-58,5),(10,45)))),
         ('accumulator',accumulator(100,'currentColor','#d2ee00'))
     )
