@@ -7,10 +7,11 @@
    version="1.1"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
+  <desc>use clothing, hat and glasses</desc>
   <g
      fill-opacity="1" fill-rule="nonzero">
     <path
-       d="m3.917,0 h 42.166 c 2.163,0 3.918,1.754 3.918,3.917 v 42.166 c 0,2.164 -1.755,3.918 -3.918,3.918 H3.917c -2.164,0 -3.917,-1.754 -3.917,-3.918 v -42.166 c 0,-2.163 1.753,-3.917 3.917,-3.917"
+       d="m4,0 h42 a4,4 0 0 1 4,4 v42 a4,4 0 0 1 -4,4 h-42 a4,4 0 0 1 -4,-4 v-42 a4,4 0 0 1 4,-4 z"
        fill="#0a3f7f" stroke="none" />
     <g
        fill="#ffffff" stroke="#ffffff" stroke-width="0.355" 

@@ -6,7 +6,9 @@ UV | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 |
 ---|---|---|---|---|---|---|---|---|---|---|----|----|
 Symbol | ![0](C_UV00.svg) | ![0](C_UV01.svg) | ![1](C_UV02.svg) | ![1](C_UV03.svg) | ![1](C_UV04.svg) | ![1](C_UV05.svg) | ![1](C_UV06.svg) | ![1](C_UV07.svg) | ![1](C_UV08.svg) | ![1](C_UV09.svg) | ![1](C_UV10.svg) | ![1](C_UV11.svg) |
 
-![clothing](C_UVclothing.svg)
+Bekleidung / clothing | Schatten / shadow
+----------------------|-------------------
+![clothing](C_UVclothing.svg) | ![shadow](C_UVshadow.svg)
 
 ## Lizenz und Nutzungsrechte
 
