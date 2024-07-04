@@ -12,7 +12,7 @@
      fill-opacity="1" fill-rule="nonzero">
     <path
        d="m4,0 h42 a4,4 0 0 1 4,4 v42 a4,4 0 0 1 -4,4 h-42 a4,4 0 0 1 -4,-4 v-42 a4,4 0 0 1 4,-4 z"
-       fill="#0a3f7f" stroke="none" />
+       fill="#00008d" stroke="none" />
     <g
        fill="#ffffff" stroke="#ffffff" stroke-width="0.355" 
        stroke-linecap="butt" stroke-linejoin="bevel"

@@ -14,7 +14,7 @@
      stroke-miterlimit="10.3" stroke-dasharray="none" stroke-opacity="1">
     <path
        d="m4,0 h42 a4,4 0 0 1 4,4 v42 a4,4 0 0 1 -4,4 h-42 a4,4 0 0 1 -4,-4 v-42 a4,4 0 0 1 4,-4 z"
-       fill="#0a3f7f" stroke="none" />
+       fill="#00008d" stroke="none" />
     <path
        d="m1.31,37.866581 a20.734379,4.491220 0 0 1 22.803494,-1.005319 l3.278921,6.622154 l1.288214,-0.21534 l-3.099329,-6.259447 a20.734379,4.491220 0 1 1 -24.271301,7.138037 z"
        fill="#ffffff" stroke="none" />
