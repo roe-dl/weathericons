@@ -1,0 +1,21 @@
+<svg
+   width="40"
+   height="40"
+   viewBox="0 0 25 25"
+   version="1.1"
+   xmlns="http://www.w3.org/2000/svg">
+  <title>starke Kältebelastung</title>
+  <path
+     stroke="none" fill="#006eff"
+     d="m5,21.5 m-0.75,-4.701288 v-2.206264 h2 v2.206264 a2.5,2.5 0 1 1 -2,0 z" />
+  <path
+     stroke="currentColor" stroke-width="0.75" fill="none"
+     d="m5,21.5 m-0.75,-4.791288 v-12.206264 a1,1 0 0 1 2,0 v12.206264 a2.5,2.5 0 1 1 -2,0 z m2,-2.206264 h1 m-1,-4 h1 m-1,-4 h1" />
+
+  <circle cx="17" cy="12.5" r="6" stroke="#000" stroke-width="0.2" fill="#006eff" />
+  <circle cx="19" cy="11" r="1" fill="#000" />
+  <circle cx="15" cy="11" r="1" fill="#000" />
+  <path
+     stroke="#000" stroke-width="1.0" stroke-linecap="round" fill="none"
+     d="m14.5,15 a4.444444444444445,4.444444444444445 0 0 1 5,0" />
+</svg>

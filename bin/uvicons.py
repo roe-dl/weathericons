@@ -19,7 +19,7 @@
     The colors of the symbols differ between the representation and the
     description within the PDF file provided by the WHO
         
-    background  | representation  | description
+                | representation  | description
     ------------|-----------------|-------------
     background  | #0a3f7f         | #00008d
     UV 0        | not shown       | not defined

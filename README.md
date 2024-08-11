@@ -93,6 +93,14 @@ Regentropfen / raindrop | Schneeflocke / snowflake | keine Daten / no data
 ![raindrop](weathericons-filled/raindrop.svg) | ![snowflake](weathericons-filled/snowflake.svg) ![snowflake](weathericons-filled/snowflake2.svg) | ![no data](weathericons-filled/unknown.svg) 
 
 
+# Thermische Belastung / Thermal stress
+
+Art | keine | gering | mäßig | stark | extrem
+----|-------|--------|-------|-------|--------
+Kälte | ![none](thermalstress/thermalstress-none.svg) | ![minor](thermalstress/thermalstress-cold-minor.svg) | ![moderate](thermalstress/thermalstress-cold-moderate.svg) | ![severe](thermalstress/thermalstress-cold-severe.svg) | ![extreme](thermalstress/thermalstress-cold-extreme.svg) 
+Wärme | ![none](thermalstress/thermalstress-none.svg) | ![minor](thermalstress/thermalstress-heat-minor.svg) | ![moderate](thermalstress/thermalstress-heat-moderate.svg) | ![severe](thermalstress/thermalstress-heat-severe.svg) | ![extreme](thermalstress/thermalstress-heat-extreme.svg) 
+
+
 ### Photovoltaik-Symbole / photovoltaics icons
 
 Photovoltaik / photovoltaics | heiter/fair | Nacht/night
