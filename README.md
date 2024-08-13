@@ -1,5 +1,18 @@
 # Wettersymbole und Icons / Weather related symbols and icons
 
+## Inhalt / Contents
+
+* [Symbole / symbols and icons](#symbole--symbols-and-icons)
+  * [WMO-Symbole / WMO symbols](#wmo-symbole--wmo-symbols)
+  * [Allgemeine Symbole, offen / general icons, non-filled](#allgemeine-symbole-offen--general-icons-non-filled)
+  * [Allgemeine Symbole, gefüllt / general icons, filled](#allgemeine-symbole-gefüllt--general-icons-filled)
+  * [Thermische Belastung / thermal stress](#thermische-belastung--thermal-stress)
+  * [Photovoltaik-Symbole / photovoltaics icons](#photovoltaik-symbole--photovoltaics-icons)
+* [Lizenz und Nutzungsrechte](#lizenz-und-nutzungsrechte)
+* [License and Usage](#license-and-usage)
+* [Danksagungen / Credits](#danksagungen--credits)
+* [Links](#links)
+
 ## Symbole / Symbols and icons
 
 ### WMO-Symbole / WMO symbols
@@ -93,7 +106,7 @@ Regentropfen / raindrop | Schneeflocke / snowflake | keine Daten / no data
 ![raindrop](weathericons-filled/raindrop.svg) | ![snowflake](weathericons-filled/snowflake.svg) ![snowflake](weathericons-filled/snowflake2.svg) | ![no data](weathericons-filled/unknown.svg) 
 
 
-# Thermische Belastung / Thermal stress
+### Thermische Belastung / Thermal stress
 
 Art | keine | gering | mäßig | stark | extrem
 ----|-------|--------|-------|-------|--------
