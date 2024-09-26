@@ -18,6 +18,10 @@ Solarpanel/pv panel | Batterie/accumulator
 ---------------------------|---------------------
 ![pv panel](pvpanel.svg) | ![accu](accumulator.svg)
 
+Feuerwehrzeichen PV ohne Batterie / fire safety sign PV withour battery | Feuerwehrzeichen PV mit Batterie / fire safety sign PV with battery
+--------------------------------|----------------------------
+![fire safety pv](firesafety-pv.svg) | ![fire safety pv battery](firesafety-pv-battery.svg)
+
 ## Dunkler Hintergrund / Dark mode
 
 Wird die Datei mit `<img>` eingefügt, wird der Rahmen des Solarpanels

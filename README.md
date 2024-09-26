@@ -138,6 +138,14 @@ Solarpanel/pv panel | Batterie/accumulator
 
 ----------------------------------------------------------------------------
 
+### Feuerwehrzeichen Photovoltaik DIN 4066 / Fire safety signs photovoltaics DIN 4066
+
+ohne Batterie / withour battery | mit Batterie / with battery
+--------------------------------|----------------------------
+![fire safety pv](photovoltaics/firesafety-pv.svg) | ![fire safety pv battery](photovoltaics/firesafety-pv-battery.svg)
+
+----------------------------------------------------------------------------
+
 ## Lizenz und Nutzungsrechte
 
 Die Symbole der Code-Tabelle 4677 stammen ursprünglich von Wikimedia-Commons
