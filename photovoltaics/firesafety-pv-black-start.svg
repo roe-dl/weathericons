@@ -33,7 +33,7 @@
     <text x="52.702" y="113" fill="#000000" text-anchor="middle" font-family="sans-serif" font-size="28" font-weight="500">PV</text>
     <text x="52.702" y="128" fill="#000000" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="500">Battery</text>
     <path
-       fill="rgba(224,224,224,0.50)" stroke="#000000"
+       fill="rgba(192,192,192,0.50)" stroke="#000000"
        d="M32.702,158 h40.0 v-21.0 h-40.0 z" />
     <path
        fill="none" stroke="#000000"

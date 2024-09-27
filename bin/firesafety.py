@@ -205,7 +205,7 @@ def haus(x,y,battery,color='currentColor'):
         bat_b = round(b*40/74,1)
         bat_h = round(bat_b*21/40,1)
         s += '''    <path
-       fill="rgba(224,224,224,0.50)" stroke="%s"
+       fill="rgba(192,192,192,0.50)" stroke="%s"
        d="M%s,%s h%s v%s h%s z" />
 ''' % (color,round(x+0.5*(b-bat_b),3),round(y-7,3),bat_b,-bat_h,-bat_b)
         s += '''    <path
@@ -238,8 +238,8 @@ def pv(b,h,unit,battery,color,background_color,text):
             lines_count = len(text)
         else:
             lines_count = 1
-        h_text = h_coord-20-10*lines_count
-        h_house = h_text-(10 if lines_count==1 else 5)
+        h_text = h_coord-18-11*lines_count
+        h_house = h_text-(8 if lines_count==1 else 5)
     else:
         # no text below the icon
         h_house = h_coord-22
