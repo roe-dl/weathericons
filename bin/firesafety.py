@@ -56,10 +56,10 @@ def matrix(i,pers):
 def epfeil(x=0, y=0, factor=1, color='currentColor',pers=0):
     s = '    <path stroke="none" fill="%s" d="' % color
     j = matrix((-0.013652021551523648,-1.0),pers)
-    s += 'M%s,%s ' % (round(x+j[0]*factor,10),round(y+j[1]*factor,10))
+    s += 'M%s,%s ' % (round(x+j[0]*factor,3),round(y+j[1]*factor,3))
     for i in epfeil_coordinates:
         j = matrix(i,pers)
-        s += 'l%s,%s ' % (round(j[0]*factor,10),round(j[1]*factor,10))
+        s += 'l%s,%s ' % (round(j[0]*factor,6),round(j[1]*factor,6))
     s += 'Z" />\n'
     return s
 
@@ -190,7 +190,13 @@ def haus(x,y,battery,color='currentColor'):
     s += '''    <path
        fill="none" stroke="%s"
        d="M%s,%s h%s l%s,%s v%s l%s,%s l%s,%s l%s,%s z m%s,0 v%s l%s,%s m%s,%s l%s,%s" />
-''' % (color,x,y,b,p,-yu,yu-ym,-0.5*b,ym-yo,-p,yo-h2,-0.5*b,h2-h1,b,-h1,-0.5*b,h1-h2,0.5*b,h2-h1,p,h1-ym)
+''' % (
+        color,round(x,3),round(y,3),round(b,4),round(p,4),round(-yu,4),
+        round(yu-ym,4),round(-0.5*b,4),round(ym-yo,4),round(-p,4),
+        round(yo-h2,4),round(-0.5*b,4),round(h2-h1,4),round(b,4),
+        round(-h1,4),round(-0.5*b,4),round(h1-h2,4),round(0.5*b,4),
+        round(h2-h1,4),round(p,4),round(h1-ym,4)
+    )
     # text and battery symbol
     if battery:
         # PV with battery
@@ -213,7 +219,7 @@ def haus(x,y,battery,color='currentColor'):
     s += epfeil(x+b+p/2,y-yu/2-ym*0.5*0.12,factor=ym*0.5*0.9,color=color,pers=math.atan2(ym-h1,p)+0.1)
     return s
 
-def pv(b,h,unit,battery,color,background_color):
+def pv(b,h,unit,battery,color,background_color,text):
     """ Feuerwehrzeichen PV-Anlage
     
         Args:
@@ -224,8 +230,19 @@ def pv(b,h,unit,battery,color,background_color):
             background_color (str): background color or "none"
     """
     ratio = b/h
-    b_coord = HEIGHT*ratio
+    b_coord = round(HEIGHT*ratio,3)
     h_coord = HEIGHT
+    if text:
+        # lines of text below the icon
+        if isinstance(text,list):
+            lines_count = len(text)
+        else:
+            lines_count = 1
+        h_text = h_coord-20-10*lines_count
+        h_house = h_text-(10 if lines_count==1 else 5)
+    else:
+        # no text below the icon
+        h_house = h_coord-22
     s = WW_XML
     s += WW_SVG1 % (b,unit,h,unit,b_coord,h_coord)
     if battery:
@@ -236,8 +253,16 @@ def pv(b,h,unit,battery,color,background_color):
         s += '  <rect x="0" y="0" width="%s" height="%s" fill="%s" stroke="none" />\n' % (round(b_coord,3),round(h_coord,3),background_color)
     s += WW_SVG_G
     s += sonne(b_coord-BORDER1-BORDER2,BORDER1,33,color)
+    # border
     s += rand(BORDER1,BORDER1,b_coord-2*BORDER1,h_coord-2*BORDER1,BORDER2,SIGNAL_RED)
-    s += haus(0.5*(b_coord-116),h_coord-22,battery,color)
+    if text:
+        border = BORDER1+BORDER2-0.1
+        s += '    <path\n       fill="%s" stroke="none"\n       d="M%s,%s h%s v%s h%s z" />\n' % (SIGNAL_RED,border,h_text,b_coord-2*border,BORDER2,-b_coord+2*border)
+        s += '    <text x="%s" y="%s" text-anchor="middle" font-family="sans-serif" font-size="12">%s</text>\n' % (b_coord/2,h_coord-BORDER1-BORDER2-3,text[1] if isinstance(text,list) else text)
+        if lines_count>1:
+            s += '    <text x="%s" y="%s" text-anchor="middle" font-family="sans-serif" font-size="12">%s</text>\n' % (b_coord/2,h_coord-BORDER1-BORDER2-14,text[0])
+    # house with PV panels
+    s += haus(0.5*(b_coord-116),h_house,battery,color)
     s += WW_SVG2
     return s
 
@@ -251,8 +276,10 @@ b,h=146,188
 unit = ''
 
 pv_list = (
-    ('firesafety-pv.svg',pv,False),
-    ('firesafety-pv-battery.svg',pv,True),
+    ('firesafety-pv.svg',pv,False,146,188,'mm',None),
+    ('firesafety-pv-battery.svg',pv,True,146,188,'mm',None),
+    ('firesafety-pv-emergency-power.svg',pv,True,146,208,'mm','mit Notstrom'),
+    ('firesafety-pv-black-start.svg',pv,True,146,208,'mm',['Ersatzstrom und','Schwarzstartfähigkeit']),
 )
 
 if True:
@@ -264,7 +291,7 @@ if True:
     parser = optparse.OptionParser(usage=usage, epilog=epilog)
     
     parser.add_option('--size',dest='size',
-                      default='146x188mm',
+                      default='auto',
                       metavar='SIZE',
                       help='dimension "WIDTHxHEIGHT[UNIT]" or "A4" to "A7"')
     parser.add_option('--color',dest='color',
@@ -279,7 +306,11 @@ if True:
     (options, args) = parser.parse_args()
     
     if options.size:
-        if options.size.upper()=='A7':
+        if options.size.lower()=='auto':
+            b = None
+            h = None
+            unit = None
+        elif options.size.upper()=='A7':
             b = 74
             h = 105
             unit = 'mm'
@@ -308,12 +339,20 @@ if True:
             h = int(''.join(x1))
             unit = ''.join(x2)
     
-    print('icon size: %sx%s %s' % (b,h,unit))
+    if b and h:
+        print('icon size: %sx%s %s' % (b,h,unit))
+    else:
+        print('icon size: auto')
     print('line and text color: %s' % options.color)
     print('background color: %s' % options.bkcolor)
 
 for i in pv_list:
-    print('creating %s' % i[0])
-    s = i[1](b,h,unit,i[2],options.color,options.bkcolor)
+    text = i[6]
+    if b and h:
+        print('creating %s' % i[0])
+        s = i[1](b,h,unit,i[2],options.color,options.bkcolor,text)
+    else:
+        print('creating %s (%sx%s%s)' % (i[0],i[3],i[4],i[5]))
+        s = i[1](i[3],i[4],i[5],i[2],options.color,options.bkcolor,text)
     with open(i[0],'wt') as f:
         f.write(s)

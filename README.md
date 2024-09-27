@@ -148,9 +148,9 @@ Fire safety signs provide important information to the fire brigade, in
 this case about the existance of photovoltaics. If you need the symbols
 in another size, please, call the script `bin/firesafety`.
 
-ohne Batterie / without battery | mit Batterie / with battery
---------------------------------|----------------------------
-![fire safety pv](photovoltaics/firesafety-pv.svg) | ![fire safety pv battery](photovoltaics/firesafety-pv-battery.svg)
+ohne Batterie / without battery | mit Batterie / with battery | Notstrom / emergency power | Schwarzstartfähigkeit / black start
+--------------------------------|-----------------------------|----------------------------|------------------------------------
+![fire safety pv](photovoltaics/firesafety-pv.svg) | ![fire safety pv battery](photovoltaics/firesafety-pv-battery.svg) | ![fire safety pv](photovoltaics/firesafety-pv-emergency-power.svg) | ![fire safety pv](photovoltaics/firesafety-pv-black-start.svg)
 
 ----------------------------------------------------------------------------
 
