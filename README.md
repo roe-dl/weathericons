@@ -140,7 +140,15 @@ Solarpanel/pv panel | Batterie/accumulator
 
 ### Feuerwehrzeichen Photovoltaik DIN 4066 / Fire safety signs photovoltaics DIN 4066
 
-ohne Batterie / withour battery | mit Batterie / with battery
+Feuerwehrzeichen geben wichtige Informationen für die Einsatzkräfte, hier
+über das Vorhandensein einer Photovoltaikanlage. Wenn Sie die Symbole in
+einer anderen Größe benötigen, rufen Sie das Script `bin/firesafety.py` auf.
+
+Fire safety signs provide important information to the fire brigade, in
+this case about the existance of photovoltaics. If you need the symbols
+in another size, please, call the script `bin/firesafety`.
+
+ohne Batterie / without battery | mit Batterie / with battery
 --------------------------------|----------------------------
 ![fire safety pv](photovoltaics/firesafety-pv.svg) | ![fire safety pv battery](photovoltaics/firesafety-pv-battery.svg)
 
