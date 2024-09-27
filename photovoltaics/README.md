@@ -19,7 +19,7 @@ Solarpanel/pv panel | Batterie/accumulator
 ![pv panel](pvpanel.svg) | ![accu](accumulator.svg)
 
 Feuerwehrzeichen PV ohne Batterie / fire safety sign PV withour battery | Feuerwehrzeichen PV mit Batterie / fire safety sign PV with battery | Feuerwehrzeichen PV mit Notstrom / fire safety sign PV with emergency power | Feuerwehrzeichen PV mit Schwarzstartfähigkeit / fire safety sign PV with black start capability
---------------------------------|---------------------------------------|---------------------------------------------------------------------|-----------------------------------------------------------------------------|------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------|---------------------------------------------------------------------|-----------------------------------------------------------------------------|------------------------------------------------------------------------------------------------
 ![fire safety pv](firesafety-pv.svg) | ![fire safety pv battery](firesafety-pv-battery.svg) | ![fire safety pv](firesafety-pv-emergency-power.svg) | ![fire safety pv](firesafety-pv-black-start.svg)
 
 ## Dunkler Hintergrund / Dark mode
