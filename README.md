@@ -116,43 +116,7 @@ Wärme | ![none](thermalstress/thermalstress-none.svg) | ![minor](thermalstress/
 
 ### Photovoltaik-Symbole / photovoltaics icons
 
-Photovoltaik / photovoltaics | heiter/fair | Nacht/night
------------------------------|---------------------|---------------------
-![photovoltaics](photovoltaics/photovoltaics.svg) | ![pv with cloud](photovoltaics/photovoltaics-mostly-clear.svg) | ![night](photovoltaics/photovoltaics-night.svg) 
-
-Solarpanel/pv panel | Batterie/accumulator
------------------------------|---------------------
-![pv panel](photovoltaics/pvpanel.svg) | ![accu](photovoltaics/accumulator.svg)
-
-----------------------------------------------------------------------------
-
-### Photovoltaik-Symbole, gefüllt / photovoltaics icons, filled
-
-Photovoltaik / photovoltaics | heiter/fair | Nacht/night
------------------------------|---------------------|---------------------
-![photovoltaics](photovoltaics-filled/photovoltaics.svg) | ![pv with cloud](photovoltaics-filled/photovoltaics-mostly-clear.svg) | ![night](photovoltaics-filled/photovoltaics-night.svg) 
-
-Solarpanel/pv panel | Batterie/accumulator
------------------------------|---------------------
-![pv panel](photovoltaics-filled/pvpanel.svg) | ![accu](photovoltaics-filled/accumulator.svg)
-
-----------------------------------------------------------------------------
-
-### Feuerwehrzeichen Photovoltaik DIN 4066 / Fire safety signs photovoltaics DIN 4066
-
-Feuerwehrzeichen geben wichtige Informationen für die Einsatzkräfte, hier
-über das Vorhandensein einer Photovoltaikanlage. Wenn Sie die Symbole in
-einer anderen Größe benötigen, rufen Sie das Script `bin/firesafety.py` auf.
-
-Fire safety signs provide important information to the fire brigade, in
-this case about the existance of photovoltaics. If you need the symbols
-in another size, please, call the script `bin/firesafety`.
-
-ohne Batterie / without battery | mit Batterie / with battery | Notstrom / emergency power | Schwarzstartfähigkeit / black start
---------------------------------|-----------------------------|----------------------------|------------------------------------
-![fire safety pv](photovoltaics/firesafety-pv.svg) | ![fire safety pv battery](photovoltaics/firesafety-pv-battery.svg) | ![fire safety pv](photovoltaics/firesafety-pv-emergency-power.svg) | ![fire safety pv](photovoltaics/firesafety-pv-black-start.svg)
-
-----------------------------------------------------------------------------
+siehe / see [photovoltaicsicons](https://github.com/roe-dl/photovoltaicsicons)
 
 ## Lizenz und Nutzungsrechte
 
