@@ -627,6 +627,21 @@ def solarpanel(pv, color1='currentColor', color2='#4c7ed3'):
     return s
 
 def pvicon(bewoelkung=0,gefuellt=False, color='currentColor'):
+    """ weather PV icons
+    
+        bewoelkung:
+            0: clear sky (sun symbol)
+            1: fair (sun with small cloud)
+            4: cloudy (cloud with active PV)
+            10: clear night (moon symbol and inactive PV)
+    """
+    # panel background color
+    if gefuellt:
+        panel_background = '#808080' if bewoelkung>=10 else '#4c7ed3'
+    else:
+        panel_background = 'none'
+    # electric arrow color: active or inactive
+    epfeil_color = '#808080' if bewoelkung>=10 else '#d9040f'
     # sun circle
     cx = -32
     cy = -18
@@ -636,7 +651,10 @@ def pvicon(bewoelkung=0,gefuellt=False, color='currentColor'):
     ro = 30
     if bewoelkung==1:
         beams = (3,4,5,6,7,0)
-        arc = (0.25,1.9,1)
+        arc = (0.15,2.1,1)
+    elif bewoelkung==2:
+        beams = (4,5,6,7)
+        arc = (5.8,2.8,1)
     # pv
     pv = ((30,-20),(60,-10),(0,20),(35,45))
     # sun
@@ -659,11 +677,13 @@ def pvicon(bewoelkung=0,gefuellt=False, color='currentColor'):
         s = ''
     # cloud
     if bewoelkung==1:
-        s += wolke(cx,cy+31,scale=0.4666666,fill="#A2A4A7" if gefuellt else "none",linewidth=1.8)
+        s += wolke(cx-1,cy+29,scale=0.4666666,fill="#A2A4A7" if gefuellt else "none",linewidth=1.8)
+    elif bewoelkung==2:
+        s += wolke(cx-9,cy+28,scale=0.6,fill=CLOUD_COLOR if gefuellt else "none")
     elif bewoelkung==4:
         s += wolke(-47,-9.5,scale=0.6,fill=CLOUD_COLOR if gefuellt else "none")
-    s += solarpanel(pv,color,'#808080' if bewoelkung>=10 else '#4c7ed3')
-    s += epfeil(13,-10,35,'#808080' if bewoelkung>=10 else '#d9040f')
+    s += solarpanel(pv,color,panel_background)
+    s += epfeil(13,-10,35,epfeil_color)
     return s
 
 def accumulator(filled=100, color1='currentColor', color2="none"):
@@ -945,6 +965,7 @@ if options.writepvsvg:
     pv_list = (
         ('photovoltaics',pvicon(0,options.filled)),
         ('photovoltaics-mostly-clear',pvicon(1,options.filled)),
+        ('photovoltaics-partly-cloudy',pvicon(2,options.filled)),
         ('photovoltaics-cloudy',pvicon(4,options.filled)),
         ('photovoltaics-night',pvicon(10,options.filled)),
         ('pvpanel',solarpanel(((10,-45),(58,-30),(-58,5),(10,45)))),
