@@ -423,7 +423,7 @@ def windsymbol(wx, wy, factor=1,color="#404040"):
            wx,wy,75*factor,r,r,-r,-r,
            wx,wy+15*factor,57.5*factor,r,r,-r,r)
 
-def bewoelkt(wolke=1,mit_sonne=False,mit_mond=False,mit_wind=0,gefuellt=False):
+def bewoelkt(wolke=1,mit_sonne=False,mit_mond=False,mit_wind=0,mit_regen=0,gefuellt=False,innen=False):
     """ cloudiness
     
         wolke = 0 --> sun or moon
@@ -467,13 +467,19 @@ def bewoelkt(wolke=1,mit_sonne=False,mit_mond=False,mit_wind=0,gefuellt=False):
             # sun beams
             ri = 19
             ro = 30
-            #arc = (-18,-17.87,1,-39.28,-6.04)
-            arc = (-18.00252351,-17.73419552,1,-39.25615559,-6.02718888)
-            strahlen = (3,4,5,6,7)
-            xy = (-25,28)
+            if mit_regen:
+                #arc = (-18,-17.87,1,-39.28,-6.04)
+                arc = (-21.689834,-27.471033,0,-44.846091,-12.434216)
+                strahlen = (4,5,6)
+                xy = (-31,22)
+            else:
+                #arc = (-18,-17.87,1,-39.28,-6.04)
+                arc = (-18.00252351,-17.73419552,1,-39.25615559,-6.02718888)
+                strahlen = (3,4,5,6,7)
+                xy = (-25,28)
         else:
-            cx = -21 if mit_wind else 0
-            cy = 0 if mit_wind else -7
+            cx = -21 if mit_wind or mit_regen else 0
+            cy = 0 if mit_wind or mit_regen else -7
             r = 18
             ri = 24
             ro = 38
@@ -502,17 +508,19 @@ def bewoelkt(wolke=1,mit_sonne=False,mit_mond=False,mit_wind=0,gefuellt=False):
             #s += '<path stroke="#da4935" fill="none" d="M -34,-43 a 26,26 0 0 1 -22,39 a 24,24 0 1 0 22,-39 z" />'
             if gefuellt:
                 s += mond(-34,-43,fill=MOON_COLOR if gefuellt else "none")
+            elif mit_regen:
+                s += '<path stroke="%s" fill="none" d="M-17.168978,-32.045166 a24,24 0 0 0 -16.831022,-11.292834 a26,26 0 0 1 0.468739,25.500632 M-49.774238,-4.883587 a26,26 0 0 1 -6.225762,0.883587 a24,24 0 0 0 5.04869,4.605496" />' % MOON_COLOR
             else:
                 #s += '<path stroke="%s" fill="none" d="M-13.88,-23.64 a24,24 0 0 0 -20.12,-19.36 a26,26 0 0 1 -22,39 a 24,24 0 0 0 11.44,7.68 m 30.68,-27.32 a 24,24 0 0 0 -20.12,-19.36 " />' % MOON_COLOR
                 s += '<path stroke="%s" fill="none" d="M-13.88,-23.64 a24,24 0 0 0 -20.12,-19.36 a26,26 0 0 1 -22,39 a 24,24 0 0 0 11.44,7.68" />' % MOON_COLOR
-            xy = (-25,28)
+            xy = (-31,22) if mit_regen else (-25,28)
         elif wolke>=3:
             if gefuellt:
                 s += mond(-29,-33,fill=MOON_COLOR if gefuellt else "none")
             else:
                 s += '<path stroke="%s" fill="none" d="M-13.518,-23.978 a24,24 0 0 0 -15.482,-9.022 a26,26 0 0 1 2.200,21.081 m-17.992,17.040 a26,26 0 0 1 -6.208,0.879  a 24,24 0 0 0 6.290,5.392" />' % MOON_COLOR
                 #s += '<path stroke="%s" fill="none" d="M-16.320,-20.597 a24,24 0 0 0 -17.680,-12.403 a26,26 0 0 1 1.744,22.363 m-12.107,13.628 a26,26 0 0 1 -11.637,3.009  a 24,24 0 0 0 11.860,7.802" />' % MOON_COLOR
-            xy = (-25,28)
+            xy = (-31,22) if mit_regen else (-25,28)
     if wolke>=3:
         # mostly cloudy day or night or overcast
         w3 = (5,-30)
@@ -532,10 +540,18 @@ def bewoelkt(wolke=1,mit_sonne=False,mit_mond=False,mit_wind=0,gefuellt=False):
         # large cloud
         ##s += '<path stroke="#828487" fill="none" d="M %s,%s a 20,20 0 0 1 0,-40 h 5 a 24,24 0 0 1 43,-9 h 2 a 16.25,16.25 0 0 1 15,10 a 20,20 0 0 1 -6.244997998398398,39 z " />' % xy
         ##s += '<path stroke="#828487" fill="none" d="M %s,%s a 20,20 0 1 1 4.88026841,-39.3954371 a 24,24 0 0 1 43.20059379,-9.49083912 a 16.25,16.25 0 0 1 16.9191378,9.88627622 a 20,20 0 0 1 -6.244998,39 z " />' % xy
-        s += wolke_grosz(xy[0],xy[1],offen=4 if mit_wind else 0,fill=CLOUD_COLOR if gefuellt else "none")
+        s += wolke_grosz(xy[0],xy[1],offen=4 if mit_wind or mit_regen else 0,fill=CLOUD_COLOR if gefuellt else "none")
         if mit_wind:
             # wind symbol
             s += windsymbol(xy[0]+8,xy[1]-4,0.5)
+        elif mit_regen==1:
+            s += niesel()
+        elif mit_regen==2:
+            s += regen()
+        elif mit_regen==3:
+            s += schneeflocke(-13,17,10,innen)
+            s += schneeflocke(12,10,10,innen)
+            s += schneeflocke(5,33,10,innen)
     return s
 
 def nebel():
@@ -765,13 +781,13 @@ ICON_WW = {
   77:'SVG_ICON_SNOW',
   78:'SVG_ICON_SNOW',
   79:'SVG_ICON_HAIL',
-  80:'SVG_ICON_RAIN',
-  81:'SVG_ICON_RAIN',
-  82:'SVG_ICON_RAIN',
+  80:'SVG_ICON_RAINSHOWER_DAY',
+  81:'SVG_ICON_RAINSHOWER_DAY',
+  82:'SVG_ICON_RAINSHOWER_DAY',
   83:'SVG_ICON_SLEET',
   84:'SVG_ICON_SLEET',
-  85:'SVG_ICON_SNOW',
-  86:'SVG_ICON_SNOW',
+  85:'SVG_ICON_SNOWSHOWER_DAY',
+  86:'SVG_ICON_SNOWSHOWER_DAY',
   87:'SVG_ICON_HAIL',
   88:'SVG_ICON_HAIL',
   89:'SVG_ICON_HAIL',
@@ -825,6 +841,10 @@ if options.writesvg:
         ('thunderstorm-duststorm',sandsturmgewitter(gefuellt)),
         ('rain',regen_gesamt(gefuellt)),
         ('drizzle',niesel_gesamt(gefuellt)),
+        ('rainshower-day',bewoelkt(2,True,False,mit_regen=2,gefuellt=gefuellt)),
+        ('snowshower-day',bewoelkt(2,True,False,mit_regen=3,gefuellt=gefuellt)),
+        ('rainshower-night',bewoelkt(2,False,True,mit_regen=2,gefuellt=gefuellt)),
+        ('snowshower-night',bewoelkt(2,False,True,mit_regen=3,gefuellt=gefuellt)),
         ('snowflake',schneeflocke(0,0,40,False)),
         ('snowflake2',schneeflocke(0,0,40,True)),
         ('raindrop',regentropfen(0,0,40)),
@@ -895,6 +915,10 @@ if options.writepy:
     s += "SVG_ICON_FREEZINGDRIZZLE = '%s'\n" % gefrierender_nieselregen(gefuellt=options.filled,innen=False)
     s += "SVG_ICON_LIGHTNING = '%s'\n" % wetterleuchten3(gefuellt=options.filled)
     s += "SVG_ICON_SUNMOON = '%s'\n" % sonnemondicon(gefuellt=options.filled)
+    s += "SVG_ICON_RAINSHOWER_DAY = '%s'\n" % bewoelkt(2,True,False,mit_regen=2,gefuellt=options.filled)
+    s += "SVG_ICON_SNOWSHOWER_DAY = '%s'\n" % bewoelkt(2,True,False,mit_regen=3,gefuellt=options.filled)
+    s += "SVG_ICON_RAINSHOWER_NIGHT = '%s'\n" % bewoelkt(2,False,True,mit_regen=2,gefuellt=options.filled)
+    s += "SVG_ICON_SNOWSHOWER_NIGHT = '%s'\n" % bewoelkt(2,False,True,mit_regen=3,gefuellt=options.filled)
     s += "SVG_ICON_N = [\n"
     for idx,val in enumerate(N_ICON_LIST):
         if idx==8: break

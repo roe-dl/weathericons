@@ -49,6 +49,10 @@ Niesel / drizzle | Regen / rain | Schneeregen / sleet | Hagel / hail |
 -----------------|--------------|---------------------|--------------|
 ![drizzle](weathericons/drizzle.svg) | ![rain](weathericons/rain.svg) | ![sleet](weathericons/sleet.svg) | ![hail](weathericons/hail.svg) | 
 
+Regenschauer / rainshower | Schneeschauer / snowshower
+--------------------------|----------------------------
+![rainshower](weathericons/rainshower-day.svg) ![rainshower](weathericons/rainshower-night.svg) | ![snowshower](weathericons/snowshower-day.svg) ![snowshower](weathericons/snowshower-night.svg)
+
 gefrierender Niesel / freezing drizzle | gefrierender Regen / freezing rain | Glatteis / glaze ice 
 -----------------------------------|------------------|----------------------
 ![freezingdrizzle](weathericons/freezingdrizzle.svg) | ![freezingrain](weathericons/freezingrain.svg) ![freezingrain](weathericons/freezingrain2.svg) | ![glaze ice](weathericons/glazeice.svg) 
