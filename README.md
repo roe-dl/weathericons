@@ -118,6 +118,15 @@ Kälte | ![none](thermalstress/thermalstress-none.svg) | ![minor](thermalstress/
 Wärme | ![none](thermalstress/thermalstress-none.svg) | ![minor](thermalstress/thermalstress-heat-minor.svg) | ![moderate](thermalstress/thermalstress-heat-moderate.svg) | ![severe](thermalstress/thermalstress-heat-severe.svg) | ![extreme](thermalstress/thermalstress-heat-extreme.svg) 
 
 
+### Jahreszeiten / Seasons
+
+Form / shape | Frühling / spring | Sommer / summer | Herbst / autumn | Winter / winter
+------|--------|--------|--------|-------
+durchsichtig / translucent | ![spring](seasons/translucent/spring.svg) | ![summer](seasons/translucent/summer.svg) | ![autumn](seasons/translucent/autumn.svg) | ![winter](seasons/translucent/winter.svg)
+rund / round | ![spring](seasons/round/spring.svg) | ![summer](seasons/round/summer.svg) | ![autumn](seasons/round/autumn.svg) | ![winter](seasons/round/winter.svg)
+rechteckig / square | ![spring](seasons/square/spring.svg) | ![summer](seasons/square/summer.svg) | ![autumn](seasons/square/autumn.svg) | ![winter](seasons/square/winter.svg)
+
+
 ### Photovoltaik-Symbole / photovoltaics icons
 
 siehe / see [photovoltaicsicons](https://github.com/roe-dl/photovoltaicsicons)
