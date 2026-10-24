@@ -37,24 +37,25 @@ WINTER_COLOR = '#66a1ba'
 SEASONS_COLORS = {'spring':SPRING_COLOR,'summer':SUMMER_COLOR,'autumn':AUTUMN_COLOR,'winter':WINTER_COLOR}
 
 
-def sonne(x=0, y=0, color=SUN_COLOR, fill="none"):
+def sonne(x=0, y=0, r=38, stroke_width=4, color=SUN_COLOR, fill="none"):
     """ sun icon """
-    s = '<g stroke="%s" stroke-width="%s">' % (color,4)
-    s += '<circle cx="%s" cy="%s" r="18" fill="%s" />' % (x,y,fill)
+    s = '<g stroke="%s" stroke-width="%s">' % (color,stroke_width)
+    s += '<circle cx="%s" cy="%s" r="%s" fill="%s" />' % (x,y,round(r/2.1111111111111,6),fill)
     s += '<path fill="none" d="'
     for i in range(8):
         w = math.pi*i/4
-        ri = 24
-        ro = 38
+        ri = round(r/1.583333333333333333333333333,6)
+        ro = r
         s += 'M %s,%s L %s,%s ' % (round(x+math.cos(w)*ri,14),round(y+math.sin(w)*ri,14),round(x+math.cos(w)*ro,14),round(y+math.sin(w)*ro,14))
     s += '" />'
     s += '</g>'
     return s
 
-def schneeflocke(x, y, r, innen=True, color=RAIN_COLOR):
+def schneeflocke(x, y, r, stroke_width=None, innen=True, color=RAIN_COLOR):
     """ snowflake """
+    if stroke_width is None: stroke_width = r*0.15
     y -= r
-    s = '<path stroke="%s" stroke-width="%s" stroke-linecap="round" fill="none" d="M %s,%s ' % (color,4,x,y) # stroke-width was r*0.15
+    s = '<path stroke="%s" stroke-width="%s" stroke-linecap="round" fill="none" d="M %s,%s ' % (color,stroke_width,x,y) # stroke-width was r*0.15
     for i in range(3):
         phi = i*math.pi/3
         if i>0:
@@ -85,17 +86,17 @@ def schneeflocke(x, y, r, innen=True, color=RAIN_COLOR):
     s += '" />'
     return s
 
-def flower(x, y, r, color, fill='none', count=6, petal='6,0.4308', debug=False):
+def flower(x, y, r, stroke_width, color, fill='none', count=6, petal='6,0.4308', debug=False):
     s = petal.split(',')
     # count of petals
     count = int(s[0])
     # shape of the petal
     petal = s[1]
-    s = ['<g stroke="%s" stroke-width="%s">' % (color,4)]
-    s.append('<circle cx="%s" cy="%s" r="10" fill="%s" />' % (x,y,fill))
+    ri = r/3.8
+    s = ['<g stroke="%s" stroke-width="%s">' % (color,stroke_width)]
+    s.append('<circle cx="%s" cy="%s" r="%s" fill="%s" />' % (x,y,ri,fill))
     alpha = 2.0*math.pi/count
     alpha2 = math.pi/count
-    ri = 10
     if petal=='circle':
         # Kreis
         ro = r/(1/math.cos(alpha2)+math.tan(alpha2))
@@ -127,11 +128,11 @@ def flower(x, y, r, color, fill='none', count=6, petal='6,0.4308', debug=False):
     s.append('<path fill="none" d="')
     for i in range(count):
         w = alpha*i
-        s.append('M%s,%s' % (round(x+math.cos(w)*ri,14),round(y+math.sin(w)*ri,14)))
+        s.append('M%s,%s' % (round(x+math.cos(w)*ri,6),round(y+math.sin(w)*ri,6)))
         if ro>ri:
-            s.append('L%s,%s' % (round(x+math.cos(w)*ro,14),round(y+math.sin(w)*ro,14)))
+            s.append('L%s,%s' % (round(x+math.cos(w)*ro,6),round(y+math.sin(w)*ro,6)))
         w = alpha*(i+1)
-        s.append('A%s,%s %s 1 1 %s,%s' % (b,a,360/count*(i+0.5),round(x+math.cos(w)*ro,14),round(y+math.sin(w)*ro,14)))
+        s.append('A%s,%s %s 1 1 %s,%s' % (b,a,360/count*(i+0.5),round(x+math.cos(w)*ro,6),round(y+math.sin(w)*ro,6)))
     s.append('" />')
     s.append('</g>\n')
     return ''.join(s)
@@ -144,9 +145,37 @@ def windsymbol(wx, wy, factor=1,color="#404040"):
            wx,wy,75*factor,r,r,-r,-r,
            wx,wy+15*factor,57.5*factor,r,r,-r,r)
 
+def all_seasons(filled, background, petal, debug):
+    """ create symbol representing all four seasons
+    """
+    s = [
+        '  <desc>seasons</desc>\n',
+        '  <!-- Copyright (C) 2026 Johanna Karen Rödenbeck -->\n'
+    ]
+    fgcolor = '#ffffff'
+    for season, color in SEASONS_COLORS.items():
+        cx, cy = {'spring':(-23,-23), 'summer':(23,-23), 'autumn':(23,23), 'winter':(-23,23)}[season]
+        s.append('  <rect x="%s" y="%s" width="46" height="46" stroke="none" fill="%s" />\n' % (cx-23,cy-23,color))
+    # flower as a symbol for spring
+    s.append(flower(-23,-23,38*0.5,stroke_width=2,color=fgcolor,fill=fgcolor if filled else 'none',petal=petal,debug=debug))
+    # sun as a symbol for summer
+    s.append('  ')
+    s.append(sonne(23,-23,38*0.5,stroke_width=2,color=fgcolor,fill=fgcolor if filled else 'none'))
+    s.append('\n')
+    # a falling leave as a symbol for autumn
+    s.append(windsymbol(-30*0.5+23,23,60/87*0.5,color=fgcolor)+'\n')
+    s.append('  <path stroke="%s" stroke-width="2" fill="none" d="M9,10.5a5.5,3.5 -30 0 0 5,2.88 a5,3.5 -30 0 0 -5,-3.88z" />\n' % (fgcolor,))
+    s.append('  <path stroke="%s" stroke-width="2" fill="none" d="M13,34a6,4.5 -30 0 0 7,4 a6,4.5 -30 0 0 -7,-4z" />\n' % (fgcolor,))
+    # a snowflake as symbol for winter
+    s.append('  ')
+    s.append(schneeflocke(-23,23,38*0.5,stroke_width=2,color=fgcolor))
+    s.append('\n')
+    return ''.join(s)
+
 def seasons_symbol(season, filled, background, petal='6,0.4308', debug=False):
     """ create symbols for the four seasons
     """
+    if season=='seasons': return all_seasons(filled, background, petal, debug)
     # symbol color depending on season
     color = SEASONS_COLORS[season]
     # description and copyright
@@ -169,21 +198,21 @@ def seasons_symbol(season, filled, background, petal='6,0.4308', debug=False):
     # the symbol iteself depending on season
     if season=='spring':
         # flower as a symbol for spring
-        s.append(flower(0,0,38,color=fgcolor,fill=fgcolor if filled else 'none',petal=petal,debug=debug))
+        s.append(flower(0,0,38,stroke_width=4,color=fgcolor,fill=fgcolor if filled else 'none',petal=petal,debug=debug))
     if season=='summer':
         # sun as a symbol for summer
         s.append('  ')
-        s.append(sonne(0,0,color=fgcolor,fill=fgcolor if filled else 'none'))
+        s.append(sonne(0,0,38,stroke_width=4,color=fgcolor,fill=fgcolor if filled else 'none'))
         s.append('\n')
     if season=='autumn':
         # a falling leave as a symbol for autumn
-        s.append(windsymbol(-30,0,60/87,color=fgcolor))
-        s.append('<path stroke="%s" stroke-width="4" fill="none" d="M-28,-25a10,7 -30 0 0 10,5.77 a10,7 -30 0 0 -10,-5.77z" />\n' % (fgcolor,))
-        s.append('<path stroke="%s" stroke-width="4" fill="none" d="M-20,22a12,9 -30 0 0 14,8 a12,9 -30 0 0 -14,-8z" />\n' % (fgcolor,))
+        s.append(windsymbol(-30,0,60/87,color=fgcolor)+'\n')
+        s.append('  <path stroke="%s" stroke-width="4" fill="none" d="M-28,-25a10,7 -30 0 0 10,5.77 a10,7 -30 0 0 -10,-5.77z" />\n' % (fgcolor,))
+        s.append('  <path stroke="%s" stroke-width="4" fill="none" d="M-20,22a12,9 -30 0 0 14,8 a12,9 -30 0 0 -14,-8z" />\n' % (fgcolor,))
     if season=='winter':
         # a snowflake as symbol for winter
         s.append('  ')
-        s.append(schneeflocke(0,0,38,color=fgcolor))
+        s.append(schneeflocke(0,0,38,stroke_width=4,color=fgcolor))
         s.append('\n')
     return ''.join(s)
 
@@ -225,7 +254,7 @@ if True:
     if options.writesvg:
 
         filled = options.filled
-        for val in ['spring','summer','autumn','winter']:
+        for val in ['spring','summer','autumn','winter','seasons']:
             with open(val+'.svg','w') as file:
                 file.write(WW_XML)
                 file.write(WW_SVG1 % (options.width,options.width))
