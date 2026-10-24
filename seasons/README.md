@@ -4,7 +4,7 @@ Those symbols shall represent the four seasons of the year.
 
 shape | spring | summer | autumn | winter | all seasons
 ------|--------|--------|--------|--------|-------------
-translucent | ![spring](translucent/spring.svg) | ![summer](translucent/summer.svg) | ![autumn](translucent/autumn.svg) | ![winter](translucent/winter.svg) |
+translucent | ![spring](translucent/spring.svg) | ![summer](translucent/summer.svg) | ![autumn](translucent/autumn.svg) | ![winter](translucent/winter.svg) | ![all seasons](translucent/seasons.svg)
 round | ![spring](round/spring.svg) | ![summer](round/summer.svg) | ![autumn](round/autumn.svg) | ![winter](round/winter.svg) |
 square | ![spring](square/spring.svg) | ![summer](square/summer.svg) | ![autumn](square/autumn.svg) | ![winter](square/winter.svg) | ![all seasons](square/seasons.svg)
 

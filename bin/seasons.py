@@ -152,23 +152,26 @@ def all_seasons(filled, background, petal, debug):
         '  <desc>seasons</desc>\n',
         '  <!-- Copyright (C) 2026 Johanna Karen Rödenbeck -->\n'
     ]
-    fgcolor = '#ffffff'
-    for season, color in SEASONS_COLORS.items():
-        cx, cy = {'spring':(-23,-23), 'summer':(23,-23), 'autumn':(23,23), 'winter':(-23,23)}[season]
-        s.append('  <rect x="%s" y="%s" width="46" height="46" stroke="none" fill="%s" />\n' % (cx-23,cy-23,color))
+    if background in {'round','square'}:
+        fgcolor = ['#ffffff']*4
+        for season, color in SEASONS_COLORS.items():
+            cx, cy = {'spring':(-23,-23), 'summer':(23,-23), 'autumn':(23,23), 'winter':(-23,23)}[season]
+            s.append('  <rect x="%s" y="%s" width="46" height="46" stroke="none" fill="%s" />\n' % (cx-23,cy-23,color))
+    else:
+        fgcolor = [color for _, color in SEASONS_COLORS.items()]
     # flower as a symbol for spring
-    s.append(flower(-23,-23,38*0.5,stroke_width=2,color=fgcolor,fill=fgcolor if filled else 'none',petal=petal,debug=debug))
+    s.append(flower(-23,-23,38*0.5,stroke_width=2,color=fgcolor[0],fill=fgcolor if filled else 'none',petal=petal,debug=debug))
     # sun as a symbol for summer
     s.append('  ')
-    s.append(sonne(23,-23,38*0.5,stroke_width=2,color=fgcolor,fill=fgcolor if filled else 'none'))
+    s.append(sonne(23,-23,38*0.5,stroke_width=2,color=fgcolor[1],fill=fgcolor if filled else 'none'))
     s.append('\n')
     # a falling leave as a symbol for autumn
-    s.append(windsymbol(-30*0.5+23,23,60/87*0.5,color=fgcolor)+'\n')
-    s.append('  <path stroke="%s" stroke-width="2" fill="none" d="M9,10.5a5.5,3.5 -30 0 0 5,2.88 a5,3.5 -30 0 0 -5,-3.88z" />\n' % (fgcolor,))
-    s.append('  <path stroke="%s" stroke-width="2" fill="none" d="M13,34a6,4.5 -30 0 0 7,4 a6,4.5 -30 0 0 -7,-4z" />\n' % (fgcolor,))
+    s.append(windsymbol(-30*0.5+23,23,60/87*0.5,color=fgcolor[2])+'\n')
+    s.append('  <path stroke="%s" stroke-width="2" fill="none" d="M9,10.5a5.5,3.5 -30 0 0 5,2.88 a5,3.5 -30 0 0 -5,-3.88z" />\n' % (fgcolor[2],))
+    s.append('  <path stroke="%s" stroke-width="2" fill="none" d="M13,34a6,4.5 -30 0 0 7,4 a6,4.5 -30 0 0 -7,-4z" />\n' % (fgcolor[2],))
     # a snowflake as symbol for winter
     s.append('  ')
-    s.append(schneeflocke(-23,23,38*0.5,stroke_width=2,color=fgcolor))
+    s.append(schneeflocke(-23,23,38*0.5,stroke_width=2,color=fgcolor[3]))
     s.append('\n')
     return ''.join(s)
 
