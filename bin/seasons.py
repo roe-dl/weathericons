@@ -136,6 +136,14 @@ def flower(x, y, r, color, fill='none', count=6, petal='6,0.4308', debug=False):
     s.append('</g>\n')
     return ''.join(s)
 
+def windsymbol(wx, wy, factor=1,color="#404040"):
+    r = round(12*factor,6)
+    return '<path stroke-width="%s" stroke="%s" fill="none" d="M%s,%s h%s a%s,%s 0 1 0 %s,%s M%s,%s h%s a%s,%s 0 1 0 %s,%s M%s,%s h%s a%s,%s 0 1 1 %s,%s" />' % (
+           round(6*factor,1),color,
+           wx,wy-15*factor,40*factor,r,r,-r,-r,
+           wx,wy,75*factor,r,r,-r,-r,
+           wx,wy+15*factor,57.5*factor,r,r,-r,r)
+
 def seasons_symbol(season, filled, background, petal='6,0.4308', debug=False):
     """ create symbols for the four seasons
     """
@@ -169,7 +177,9 @@ def seasons_symbol(season, filled, background, petal='6,0.4308', debug=False):
         s.append('\n')
     if season=='autumn':
         # a falling leave as a symbol for autumn
-        pass
+        s.append(windsymbol(-30,0,60/87,color=fgcolor))
+        s.append('<path stroke="%s" stroke-width="4" fill="none" d="M-28,-25a10,7 -30 0 0 10,5.77 a10,7 -30 0 0 -10,-5.77z" />\n' % (fgcolor,))
+        s.append('<path stroke="%s" stroke-width="4" fill="none" d="M-20,22a12,9 -30 0 0 14,8 a12,9 -30 0 0 -14,-8z" />\n' % (fgcolor,))
     if season=='winter':
         # a snowflake as symbol for winter
         s.append('  ')

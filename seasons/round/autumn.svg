@@ -3,4 +3,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100" height="100" viewBox="-46 -46 92 92">  <desc>autumn season</desc>
   <!-- Copyright (C) 2026 Johanna Karen Rödenbeck -->
   <circle cx="0" cy="0" r="46" stroke="none" fill="#e37e54" />
+<path stroke-width="4.1" stroke="#ffffff" fill="none" d="M-30,-10.344827586206897 h27.586206896551726 a8.275862,8.275862 0 1 0 -8.275862,-8.275862 M-30,0 h51.724137931034484 a8.275862,8.275862 0 1 0 -8.275862,-8.275862 M-30,10.344827586206897 h39.6551724137931 a8.275862,8.275862 0 1 1 -8.275862,8.275862" /><path stroke="#ffffff" stroke-width="4" fill="none" d="M-28,-25a10,7 -30 0 0 10,5.77 a10,7 -30 0 0 -10,-5.77z" />
+<path stroke="#ffffff" stroke-width="4" fill="none" d="M-20,22a12,9 -30 0 0 14,8 a12,9 -30 0 0 -14,-8z" />
 </svg>
