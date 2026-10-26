@@ -7,6 +7,7 @@
   * [Allgemeine Symbole, offen / general icons, non-filled](#allgemeine-symbole-offen--general-icons-non-filled)
   * [Allgemeine Symbole, gefüllt / general icons, filled](#allgemeine-symbole-gefüllt--general-icons-filled)
   * [Thermische Belastung / thermal stress](#thermische-belastung--thermal-stress)
+  * [Jahreszeiten / seasons](#jahreszeiten--seasons)
   * [Photovoltaik-Symbole / photovoltaics icons](#photovoltaik-symbole--photovoltaics-icons)
 * [Lizenz und Nutzungsrechte](#lizenz-und-nutzungsrechte)
 * [License and Usage](#license-and-usage)
@@ -120,11 +121,11 @@ Wärme | ![none](thermalstress/thermalstress-none.svg) | ![minor](thermalstress/
 
 ### Jahreszeiten / Seasons
 
-Form / shape | Frühling / spring | Sommer / summer | Herbst / autumn | Winter / winter
-------|--------|--------|--------|-------
-durchsichtig / translucent | ![spring](seasons/translucent/spring.svg) | ![summer](seasons/translucent/summer.svg) | ![autumn](seasons/translucent/autumn.svg) | ![winter](seasons/translucent/winter.svg)
-rund / round | ![spring](seasons/round/spring.svg) | ![summer](seasons/round/summer.svg) | ![autumn](seasons/round/autumn.svg) | ![winter](seasons/round/winter.svg)
-rechteckig / square | ![spring](seasons/square/spring.svg) | ![summer](seasons/square/summer.svg) | ![autumn](seasons/square/autumn.svg) | ![winter](seasons/square/winter.svg)
+Form / shape | Frühling / spring | Sommer / summer | Herbst / autumn | Winter / winter | Insgesamt / all
+------|--------|--------|--------|-------|-------
+durchsichtig / translucent | ![spring](seasons/translucent/spring.svg) | ![summer](seasons/translucent/summer.svg) | ![autumn](seasons/translucent/autumn.svg) | ![winter](seasons/translucent/winter.svg) | ![all](seasons/translucent/seasons.svg)
+rund / round | ![spring](seasons/round/spring.svg) | ![summer](seasons/round/summer.svg) | ![autumn](seasons/round/autumn.svg) | ![winter](seasons/round/winter.svg) |
+rechteckig / square | ![spring](seasons/square/spring.svg) | ![summer](seasons/square/summer.svg) | ![autumn](seasons/square/autumn.svg) | ![winter](seasons/square/winter.svg) | ![all](seasons/square/seasons.svg)
 
 
 ### Photovoltaik-Symbole / photovoltaics icons
